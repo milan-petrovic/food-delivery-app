@@ -1,16 +1,16 @@
 export enum BaseRoutes {
     BaseUrl = 'http://localhost:3000',
-    ApiUrl = 'http://localhost:8081',
+    ApiUrl = 'http://ec2-52-59-235-7.eu-central-1.compute.amazonaws.com:8080',
 }
 
 export enum AppRoutes {
     Admin = '/admin',
     Business = '/business',
     Feed = '/feed',
-    Feed_Kateogrije = '/feed/kategorije',
-    Admin_Kateogrije = '/admin/kategorije',
+    FeedKateogrije = '/feed/kategorije',
+    AdminKateogrije = '/admin/kategorije',
     Korisnici = '/admin/korisnici',
     Restorani = '/admin/restorani',
     Jela = '/business/jela',
-    Porudzbine = '/business/porudzbine',
+    BusinessNarudzbe = '/business/narudzbe',
 }

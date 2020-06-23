@@ -1,18 +1,18 @@
-export interface Korisnik {
+export interface User {
     id?: number;
-    username: string;
-    password: string;
+    uname: string;
+    passwd: string;
     admin: boolean;
 }
 
 export interface Restoran {
     id?: number;
-    naziv: string;
+    ime: string;
     adresa: string;
-    telefon: string;
+    tel: string;
     email: string;
     opis: string;
-    korisnik: Korisnik;
+    usertbl: User;
 }
 
 export interface Kategorija {
@@ -23,8 +23,8 @@ export interface Kategorija {
 
 export interface Jelo {
     id?: number;
-    restoran: Restoran;
-    kategorija: Kategorija;
+    restoranBean: Restoran;
+    kategorijaBean: Kategorija;
     ime: string;
     opis: string;
     sastav: string;
@@ -34,15 +34,29 @@ export interface Jelo {
 export interface Narudzba {
     id?: number;
     ime: string;
-    telefon: string;
+    tel: string;
     adresa: string;
     email: string;
     napomena: string;
-    restoran: Restoran;
+    restoranBean: Restoran;
 }
 
 export interface Stavka {
-    narudzba: Narudzba;
-    jelo: Jelo;
+    id?: number;
+    narudzbaBean: Narudzba;
+    jeloBean: Jelo;
     kolicina: number;
+}
+
+export interface LoginModel {
+    username: string;
+    password: string;
+}
+
+export interface AuthUser {
+    authenticated: boolean;
+    accessToken: string;
+    id: number;
+    username: number;
+    role: string;
 }

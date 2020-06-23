@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BaseRoutes } from '../constants/routes';
+import { BaseRoutes } from '../utils/constants/routes';
 
 export const axiosInstance = axios.create({
     baseURL: BaseRoutes.ApiUrl,
