@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { drawerWidth, ToggleProps } from '../../utils/AppUtils.';
+import { drawerWidth, ToggleProps } from '../../utils/AppUtils';
 import {
     Avatar,
     Divider,

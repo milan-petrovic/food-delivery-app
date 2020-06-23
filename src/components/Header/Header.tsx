@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { drawerWidth, ToggleProps } from '../../utils/AppUtils.';
+import { drawerWidth, ToggleProps } from '../../utils/AppUtils';
 import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import MenuIcon from '@material-ui/icons/Menu';

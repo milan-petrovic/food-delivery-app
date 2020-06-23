@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-import { NotificationProps } from '../../utils/AppUtils.';
+import { NotificationProps } from '../../utils/AppUtils';
 
 export const Notification: React.FC<NotificationProps> = ({
     popupDuration = 5000,

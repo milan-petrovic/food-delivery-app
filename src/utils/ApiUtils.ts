@@ -1,4 +1,4 @@
-import { NotificationProps } from './AppUtils.';
+import { NotificationProps } from './AppUtils';
 import { AxiosError } from 'axios';
 
 export const notifyOnReject = (
