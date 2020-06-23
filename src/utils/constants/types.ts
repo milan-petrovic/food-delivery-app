@@ -1,7 +1,7 @@
 export interface User {
     id?: number;
     uname: string;
-    passwd: string;
+    passwd?: string;
     admin: boolean;
 }
 

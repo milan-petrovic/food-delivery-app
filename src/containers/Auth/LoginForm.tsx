@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar, Button, CssBaseline, Grid, Paper, TextField, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { NotificationProps, Roles } from '../../utils/AppUtils.';
+import { NotificationProps, Roles } from '../../utils/AppUtils';
 import { LoginModel, DecodedToken } from '../../utils/constants/types';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { Notification } from '../../components/Notification/Notification';

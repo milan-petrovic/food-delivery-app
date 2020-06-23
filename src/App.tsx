@@ -8,6 +8,7 @@ import { SideDrawer } from './components/SideDrawer/SideDrawer';
 import { UserContextProvider } from './service/providers/UserContextProvider';
 import { AppRoutes } from './utils/constants/routes';
 import { LoginForm } from './containers/Auth/LoginForm';
+import { RestoraniContainer } from './containers/Restorani/RestoraniContainer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,6 +58,7 @@ const App: React.FC = () => {
                         <div className={classes.appBarSpacer} />
                         <Switch>
                             <Route path={AppRoutes.Login} exact component={LoginForm} />
+                            <Route path={AppRoutes.Restorani} exact component={RestoraniContainer} />
                         </Switch>
                     </main>
                 </div>
