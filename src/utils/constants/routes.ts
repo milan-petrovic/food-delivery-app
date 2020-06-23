@@ -4,6 +4,7 @@ export enum BaseRoutes {
 }
 
 export enum AppRoutes {
+    Login = '/login',
     Admin = '/admin',
     Business = '/business',
     Feed = '/feed',

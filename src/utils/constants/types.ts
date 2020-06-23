@@ -54,9 +54,14 @@ export interface LoginModel {
 }
 
 export interface AuthUser {
-    authenticated: boolean;
-    accessToken: string;
-    id: number;
-    username: number;
-    role: string;
+    accessToken?: string;
+    id?: number;
+    username?: string;
+    role?: string;
+}
+
+export interface DecodedToken {
+    jti: number;
+    username: string;
+    type: string;
 }

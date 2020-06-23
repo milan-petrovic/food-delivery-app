@@ -1,8 +1,8 @@
 export const drawerWidth = 240;
 
 export enum Roles {
-    ADMIN = 'admin',
-    RESTORAN = 'restoran',
+    ADMIN = 'A',
+    RESTORAN = 'R',
 }
 
 export const requiredMessage = 'Obavezno polje';

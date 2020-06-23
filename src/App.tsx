@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
 import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { CssBaseline } from '@material-ui/core';
 import { Header } from './components/Header/Header';
 import { SideDrawer } from './components/SideDrawer/SideDrawer';
+import { UserContextProvider } from './service/providers/UserContextProvider';
+import { AppRoutes } from './utils/constants/routes';
+import { LoginForm } from './containers/Auth/LoginForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,17 +47,21 @@ const App: React.FC = () => {
     };
 
     return (
-        <BrowserRouter>
-            <div className={classes.root}>
-                <CssBaseline />
-                <Header open={open} onClick={handleDrawerOpen} />
-                <SideDrawer open={open} onClick={handleDrawerClose} />
-                <main className={classes.content}>
-                    <div className={classes.appBarSpacer} />
-                    <Switch></Switch>
-                </main>
-            </div>
-        </BrowserRouter>
+        <UserContextProvider>
+            <BrowserRouter>
+                <div className={classes.root}>
+                    <CssBaseline />
+                    <Header open={open} onClick={handleDrawerOpen} />
+                    <SideDrawer open={open} onClick={handleDrawerClose} />
+                    <main className={classes.content}>
+                        <div className={classes.appBarSpacer} />
+                        <Switch>
+                            <Route path={AppRoutes.Login} exact component={LoginForm} />
+                        </Switch>
+                    </main>
+                </div>
+            </BrowserRouter>
+        </UserContextProvider>
     );
 };
 

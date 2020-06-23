@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { drawerWidth, ToggleProps } from '../../utils/AppUtils.';
-import { AppBar, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
 import clsx from 'clsx';
 import MenuIcon from '@material-ui/icons/Menu';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import { Link } from 'react-router-dom';
+import { AppRoutes } from '../../utils/constants/routes';
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -40,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Header: React.FC<ToggleProps> = (props: { open: boolean; onClick: () => void }) => {
     const classes = useStyles();
+    const { authenticated } = useContext(UserContext);
 
     return (
         <AppBar position="absolute" className={clsx(classes.appBar, props.open && classes.appBarShift)}>
@@ -55,6 +59,11 @@ export const Header: React.FC<ToggleProps> = (props: { open: boolean; onClick: (
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                     Dostava hrane
                 </Typography>
+                {!authenticated && (
+                    <Button color="secondary" variant="outlined" component={Link} to={AppRoutes.Login}>
+                        Prijavi se
+                    </Button>
+                )}
             </Toolbar>
         </AppBar>
     );
