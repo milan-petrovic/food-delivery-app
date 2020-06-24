@@ -99,7 +99,7 @@ export const SideDrawer: React.FC<ToggleProps> = ({ onClick, open }: ToggleProps
                             </ListItemIcon>
                             <ListItemText primary="Restorani" />
                         </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.FeedKateogrije}>
+                        <ListItem button component={Link} to={AppRoutes.FeedKategorije}>
                             <ListItemIcon>
                                 <VpnKeyIcon />
                             </ListItemIcon>

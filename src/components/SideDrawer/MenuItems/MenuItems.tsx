@@ -42,19 +42,19 @@ export const MainMenuItems: React.FC<MainMenuItemsProps> = (props: MainMenuItems
                             </ListItemIcon>
                             <ListItemText primary="Restorani" />
                         </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.AdminKateogrije}>
+                        <ListItem button component={Link} to={AppRoutes.AdminKategorije}>
                             <ListItemIcon>
                                 <AppsIcon />
                             </ListItemIcon>
                             <ListItemText primary="Kategorije" />
                         </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.AdminKateogrije}>
+                        <ListItem button component={Link} to={AppRoutes.AdminKategorije}>
                             <ListItemIcon>
                                 <AppsIcon />
                             </ListItemIcon>
                             <ListItemText primary="Narudzbe" />
                         </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.AdminKateogrije}>
+                        <ListItem button component={Link} to={AppRoutes.AdminKategorije}>
                             <ListItemIcon>
                                 <AppsIcon />
                             </ListItemIcon>
