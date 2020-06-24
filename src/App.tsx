@@ -9,8 +9,8 @@ import { UserContextProvider } from './service/providers/UserContextProvider';
 import { AppRoutes } from './utils/constants/routes';
 import { LoginForm } from './containers/Auth/LoginForm';
 import { RestoraniContainer } from './containers/Restorani/RestoraniContainer';
-import { MainSection } from './components/MainSection/MainSection';
 import { HomePage } from './containers/HomePage/HomePage';
+import { KategorijeContainer } from './containers/Kategorije/KategorijeContainer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -62,6 +62,7 @@ const App: React.FC = () => {
                             <Route path={AppRoutes.Login} exact component={LoginForm} />
                             <Route path={AppRoutes.Restorani} exact component={RestoraniContainer} />
                             <Route path="/" exact component={HomePage} />
+                            <Route path={AppRoutes.AdminKategorije} exact component={KategorijeContainer} />
                         </Switch>
                     </main>
                 </div>

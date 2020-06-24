@@ -5,6 +5,12 @@ import AppsIcon from '@material-ui/icons/Apps';
 import { UserContext } from '../../../service/providers/UserContextProvider';
 import { Roles } from '../../../utils/AppUtils';
 import { AppRoutes } from '../../../utils/constants/routes';
+import RestaurantIcon from '@material-ui/icons/Restaurant';
+import KitchenIcon from '@material-ui/icons/Kitchen';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 
 interface MainMenuItemsProps {
     role?: string;
@@ -22,13 +28,13 @@ export const MainMenuItems: React.FC<MainMenuItemsProps> = (props: MainMenuItems
                     <>
                         <ListItem button component={Link} to={AppRoutes.Jela}>
                             <ListItemIcon>
-                                <AppsIcon />
+                                <FastfoodIcon />
                             </ListItemIcon>
                             <ListItemText primary="Jela" />
                         </ListItem>
                         <ListItem button component={Link} to={AppRoutes.BusinessNarudzbe}>
                             <ListItemIcon>
-                                <AppsIcon />
+                                <ListAltIcon />
                             </ListItemIcon>
                             <ListItemText primary="Moje narudzbe" />
                         </ListItem>
@@ -38,25 +44,25 @@ export const MainMenuItems: React.FC<MainMenuItemsProps> = (props: MainMenuItems
                     <>
                         <ListItem button component={Link} to={AppRoutes.Restorani}>
                             <ListItemIcon>
-                                <AppsIcon />
+                                <RestaurantIcon />
                             </ListItemIcon>
                             <ListItemText primary="Restorani" />
                         </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.AdminKateogrije}>
+                        <ListItem button component={Link} to={AppRoutes.AdminKategorije}>
                             <ListItemIcon>
-                                <AppsIcon />
+                                <KitchenIcon />
                             </ListItemIcon>
                             <ListItemText primary="Kategorije" />
                         </ListItem>
                         <ListItem button component={Link} to={AppRoutes.Narudzbe}>
                             <ListItemIcon>
-                                <AppsIcon />
+                                <ListAltIcon />
                             </ListItemIcon>
                             <ListItemText primary="Narudzbe" />
                         </ListItem>
                         <ListItem button component={Link} to={AppRoutes.Admini}>
                             <ListItemIcon>
-                                <AppsIcon />
+                                <SupervisorAccountIcon />
                             </ListItemIcon>
                             <ListItemText primary="Admini" />
                         </ListItem>
@@ -70,7 +76,7 @@ export const MainMenuItems: React.FC<MainMenuItemsProps> = (props: MainMenuItems
                         history.push('/');
                     }}>
                     <ListItemIcon>
-                        <AppsIcon />
+                        <ExitToAppIcon />
                     </ListItemIcon>
                     <ListItemText primary="Odjava" />
                 </ListItem>
