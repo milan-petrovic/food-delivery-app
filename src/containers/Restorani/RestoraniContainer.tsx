@@ -2,9 +2,9 @@ import { NotificationProps } from '../../utils/AppUtils';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Restoran } from '../../utils/constants/types';
-import { getAllRestorani } from '../../service/domain/RestoraniService';
+import { deleteRestoran, getAllRestorani } from '../../service/domain/RestoraniService';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import {
     makeStyles,
@@ -23,6 +23,7 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
+import { UserContext } from '../../service/providers/UserContextProvider';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -45,10 +46,19 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
     const classes = useStyles();
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
     const [restorani, setRestorani] = useState<Restoran[]>();
+    const { authenticated, user } = useContext(UserContext);
 
     useEffect(() => {
         getRestorani();
     }, []);
+
+    const handleDelete = (restoran: Restoran, accessToken: string) => {
+        if (authenticated) {
+            deleteRestoran(restoran, accessToken)
+                .then((response) => console.log(response))
+                .catch((error) => console.log(error));
+        }
+    };
 
     const getRestorani = () => {
         getAllRestorani()
@@ -111,7 +121,10 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
                                                 <EditIcon />
                                             </IconButton>
-                                            <IconButton aria-label="Delete category" size="small">
+                                            <IconButton
+                                                aria-label="Delete category"
+                                                size="small"
+                                                onClick={() => handleDelete(restoran!, user?.accessToken!)}>
                                                 <DeleteIcon />
                                             </IconButton>
                                         </TableCell>

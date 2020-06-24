@@ -33,3 +33,16 @@ export const getRequestConfig = (
         },
     };
 };
+
+export const getRequestConfigDelete = (
+    data: Object,
+    accessToken: string,
+): { data: Object; headers: { Authorization: string; 'Content-Type': string } } => {
+    return {
+        data: data,
+        headers: {
+            Authorization: `${accessToken}`,
+            'Content-Type': 'application/json',
+        },
+    };
+};
