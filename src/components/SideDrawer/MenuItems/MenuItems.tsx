@@ -48,13 +48,13 @@ export const MainMenuItems: React.FC<MainMenuItemsProps> = (props: MainMenuItems
                             </ListItemIcon>
                             <ListItemText primary="Kategorije" />
                         </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.AdminKateogrije}>
+                        <ListItem button component={Link} to={AppRoutes.Narudzbe}>
                             <ListItemIcon>
                                 <AppsIcon />
                             </ListItemIcon>
                             <ListItemText primary="Narudzbe" />
                         </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.AdminKateogrije}>
+                        <ListItem button component={Link} to={AppRoutes.Admini}>
                             <ListItemIcon>
                                 <AppsIcon />
                             </ListItemIcon>

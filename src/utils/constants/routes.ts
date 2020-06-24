@@ -5,13 +5,14 @@ export enum BaseRoutes {
 
 export enum AppRoutes {
     Login = '/login',
-    Admin = '/admin',
+    Admini = '/admini',
     Business = '/business',
     Feed = '/feed',
     FeedKateogrije = '/feed/kategorije',
     AdminKateogrije = '/admin/kategorije',
     Korisnici = '/admin/korisnici',
     Restorani = '/admin/restorani',
+    Narudzbe = '/admin/narudzbe',
     Jela = '/business/jela',
     BusinessNarudzbe = '/business/narudzbe',
 }

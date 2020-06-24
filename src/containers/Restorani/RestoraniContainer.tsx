@@ -23,6 +23,7 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
+import { MainSection } from '../../components/MainSection/MainSection';
 
 const useStyles = makeStyles((theme) => ({
     table: {
