@@ -9,7 +9,7 @@ import { UserContextProvider } from './service/providers/UserContextProvider';
 import { AppRoutes } from './utils/constants/routes';
 import { LoginForm } from './containers/Auth/LoginForm';
 import { RestoraniContainer } from './containers/Restorani/RestoraniContainer';
-import {KategorijeContainer} from './containers/Kategorije/KategorijeContainer';
+import { KategorijeContainer } from './containers/Kategorije/KategorijeContainer';
 
 const useStyles = makeStyles((theme) => ({
     root: {

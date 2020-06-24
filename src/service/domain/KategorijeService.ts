@@ -1,5 +1,5 @@
-import { axiosInstance } from "../../api/axios";
+import { axiosInstance } from '../../api/axios';
 
-export const getAllKategorije = () =>{
+export const getAllKategorije = () => {
     return axiosInstance.get('/kategorija');
 };

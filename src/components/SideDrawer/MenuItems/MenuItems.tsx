@@ -43,8 +43,8 @@ export const MainMenuItems: React.FC<MainMenuItemsProps> = (props: MainMenuItems
                 {props.role === Roles.ADMIN && (
                     <>
                         <ListItem button component={Link} to={AppRoutes.Restorani}>
-                            <ListItemIcon >
-                                <RestaurantIcon/>
+                            <ListItemIcon>
+                                <RestaurantIcon />
                             </ListItemIcon>
                             <ListItemText primary="Restorani" />
                         </ListItem>
