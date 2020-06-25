@@ -64,7 +64,7 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
             deleteRestoran(restoran, user?.accessToken!)
                 .then((response) => {
                     setNotification({
-                        message: `Uspjesno obrisan farmaceut ${restoran.ime}`,
+                        message: `Uspjesno obrisan restoran ${restoran.ime}`,
                         onClose: () => setNotification(undefined),
                     });
                 })
@@ -121,7 +121,7 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                     <DialogTitle id="alert-dialog-title">Potvrda brisanja restorana</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            {`Da li ste sigurni da zelite obrisati farmaceuta ${dialog?.restoran?.ime}?`}
+                            {`Da li ste sigurni da zelite obrisati restoran ${dialog?.restoran?.ime}?`}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
