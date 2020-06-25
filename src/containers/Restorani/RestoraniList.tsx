@@ -38,7 +38,12 @@ export const RestoraniList: React.FC = (props) => {
                     <Grid item xs={12} sm={4}>
                         <Card className={classes.root}>
                             <CardActionArea>
-                                <CardMedia className={classes.media} image={imageUrl} title="Slika restorana" />
+                                <CardMedia
+                                    className={classes.media}
+                                    image={imageUrl}
+                                    title="Slika restorana"
+                                    onClick={() => console.log('click')}
+                                />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
                                         {restoran.ime}
@@ -51,9 +56,6 @@ export const RestoraniList: React.FC = (props) => {
                             <CardActions>
                                 <Button size="small" color="primary" startIcon={<MotorcycleIcon />}>
                                     {restoran.cijenaDostave + ' DIN'}
-                                </Button>
-                                <Button size="small" color="primary">
-                                    Pogledaj jela
                                 </Button>
                             </CardActions>
                         </Card>
