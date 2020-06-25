@@ -1,5 +1,6 @@
 import { NotificationProps } from './AppUtils';
 import { AxiosError } from 'axios';
+import { AppRoutes, BaseRoutes } from './constants/routes';
 
 export const notifyOnReject = (
     setNotification: (value: NotificationProps | undefined) => void,
@@ -45,4 +46,8 @@ export const getRequestConfigDelete = (
             'Content-Type': 'application/json',
         },
     };
+};
+
+export const getImageUrlFromApi = (imageId: number) => {
+    return BaseRoutes.ImageUrl + `${imageId}.png`;
 };

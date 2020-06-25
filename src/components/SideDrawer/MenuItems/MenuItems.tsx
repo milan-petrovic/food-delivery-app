@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
-import AppsIcon from '@material-ui/icons/Apps';
 import { UserContext } from '../../../service/providers/UserContextProvider';
 import { Roles } from '../../../utils/AppUtils';
 import { AppRoutes } from '../../../utils/constants/routes';
@@ -54,13 +53,13 @@ export const MainMenuItems: React.FC<MainMenuItemsProps> = (props: MainMenuItems
                             </ListItemIcon>
                             <ListItemText primary="Kategorije" />
                         </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.AdminKategorije}>
+                        <ListItem button component={Link} to={AppRoutes.Narudzbe}>
                             <ListItemIcon>
                                 <ListAltIcon />
                             </ListItemIcon>
                             <ListItemText primary="Narudzbe" />
                         </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.AdminKategorije}>
+                        <ListItem button component={Link} to={AppRoutes.Admini}>
                             <ListItemIcon>
                                 <SupervisorAccountIcon />
                             </ListItemIcon>

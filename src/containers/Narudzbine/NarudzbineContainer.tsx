@@ -3,8 +3,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import React, { useState, useEffect, useContext } from 'react';
-import { Restoran } from '../../utils/constants/types';
-import { deleteRestoran, getAllRestorani } from '../../service/domain/RestoraniService';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import {
     makeStyles,
@@ -23,8 +21,10 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
-import { UserContext } from '../../service/providers/UserContextProvider';
 import { MainSection } from '../../components/MainSection/MainSection';
+import { Narudzba } from '../../utils/constants/types';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import { getAllNarudzbine } from '../../service/domain/NarudzbineService';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -43,28 +43,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
+export const NarudzbineContainer: React.FC<NotificationProps> = (props) => {
     const classes = useStyles();
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
-    const [restorani, setRestorani] = useState<Restoran[]>();
-    const { authenticated, user } = useContext(UserContext);
+    const [narudzbine, setNarudzbine] = useState<Narudzba[]>();
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
-        getRestorani();
+        getNarudzbine(user?.accessToken!);
     }, []);
 
-    const handleDelete = (restoran: Restoran, accessToken: string) => {
-        if (authenticated) {
-            deleteRestoran(restoran, accessToken)
-                .then((response) => console.log(response))
-                .catch((error) => console.log(error));
-        }
-    };
-
-    const getRestorani = () => {
-        getAllRestorani()
+    const getNarudzbine = (accessToken: string) => {
+        getAllNarudzbine(accessToken)
             .then((response) => {
-                setRestorani(response.data);
+                setNarudzbine(response.data);
             })
             .catch(notifyOnReject(setNotification));
     };
@@ -100,32 +92,29 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Ime</TableCell>
-                                <TableCell>Adresa</TableCell>
                                 <TableCell>Telefon</TableCell>
+                                <TableCell>Adresa</TableCell>
                                 <TableCell>E-mail</TableCell>
-                                <TableCell>Opis</TableCell>
-                                <TableCell>Korisnik</TableCell>
+                                <TableCell>Napomena</TableCell>
+                                <TableCell>Naziv restorana</TableCell>
                                 <TableCell>Akcije</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {restorani?.map((restoran, idx) => {
+                            {narudzbine?.map((narudzbina, idx) => {
                                 return (
                                     <TableRow key={idx}>
-                                        <TableCell>{restoran.ime}</TableCell>
-                                        <TableCell align="left">{restoran.adresa}</TableCell>
-                                        <TableCell align="left">{restoran.tel}</TableCell>
-                                        <TableCell align="left">{restoran.email}</TableCell>
-                                        <TableCell align="left">{restoran.opis}</TableCell>
-                                        <TableCell align="left">{restoran.usertbl.uname}</TableCell>
+                                        <TableCell>{narudzbina.ime}</TableCell>
+                                        <TableCell align="left">{narudzbina.tel}</TableCell>
+                                        <TableCell align="left">{narudzbina.adresa}</TableCell>
+                                        <TableCell align="left">{narudzbina.email}</TableCell>
+                                        <TableCell align="left">{narudzbina.napomena}</TableCell>
+                                        <TableCell align="left">{narudzbina.restoranBean.ime}</TableCell>
                                         <TableCell align="left">
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
                                                 <EditIcon />
                                             </IconButton>
-                                            <IconButton
-                                                aria-label="Delete category"
-                                                size="small"
-                                                onClick={() => handleDelete(restoran!, user?.accessToken!)}>
+                                            <IconButton aria-label="Delete category" size="small">
                                                 <DeleteIcon />
                                             </IconButton>
                                         </TableCell>
