@@ -1,17 +1,19 @@
 export enum BaseRoutes {
     BaseUrl = 'http://localhost:3000',
     ApiUrl = 'http://ec2-52-59-235-7.eu-central-1.compute.amazonaws.com:8080',
+    ImageUrl = 'http://s3.eu-central-1.amazonaws.com/donesi.projekat/restorani/',
 }
 
 export enum AppRoutes {
     Login = '/login',
-    Admin = '/admin',
+    Admini = '/admini',
     Business = '/business',
     Feed = '/feed',
     FeedKategorije = '/feed/kategorije',
     AdminKategorije = '/admin/kategorije',
     Korisnici = '/admin/korisnici',
     Restorani = '/admin/restorani',
+    Narudzbe = '/admin/narudzbe',
     Jela = '/business/jela',
     BusinessNarudzbe = '/business/narudzbe',
 }
