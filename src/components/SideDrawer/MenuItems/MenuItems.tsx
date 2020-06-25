@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
-import AppsIcon from '@material-ui/icons/Apps';
 import { UserContext } from '../../../service/providers/UserContextProvider';
 import { Roles } from '../../../utils/AppUtils';
 import { AppRoutes } from '../../../utils/constants/routes';
