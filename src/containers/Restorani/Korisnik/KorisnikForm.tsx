@@ -10,6 +10,7 @@ import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typo
 import { yupValidationSchema } from './validation';
 import { postUser } from '../../../service/domain/KorisniciService';
 import { notifyOnReject } from '../../../utils/ApiUtils';
+import { AppRoutes } from '../../../utils/constants/routes';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -49,7 +50,7 @@ const InnerForm = ({
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    {'Kreiraj novog korisnika'}
+                    {'Unesite korisnicke podatke'}
                 </Typography>
                 {notification && (
                     <Notification
@@ -115,14 +116,13 @@ export const KorisnikForm: React.FC<NotificationProps> = (props) => {
         setSubmitting(true);
         postUser(values)
             .then((response) => {
-                console.log(response);
+                history.push(AppRoutes.RestoranNew, response.data);
             })
             .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja korisnika'))
             .finally(() => {
                 setSubmitting(false);
+                resetForm();
             });
-
-        console.log(values);
     };
 
     return (
