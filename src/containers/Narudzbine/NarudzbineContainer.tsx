@@ -47,7 +47,7 @@ export const NarudzbineContainer: React.FC<NotificationProps> = (props) => {
     const classes = useStyles();
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
     const [narudzbine, setNarudzbine] = useState<Narudzba[]>();
-    const {user} = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
         getNarudzbine(user?.accessToken!);
