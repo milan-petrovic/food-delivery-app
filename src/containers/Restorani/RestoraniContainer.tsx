@@ -2,9 +2,9 @@ import { NotificationProps } from '../../utils/AppUtils';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Restoran } from '../../utils/constants/types';
-import { getAllRestorani } from '../../service/domain/RestoraniService';
+import { deleteRestoran, getAllRestorani } from '../../service/domain/RestoraniService';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import {
     makeStyles,
@@ -20,9 +20,15 @@ import {
     TableCell,
     TableBody,
     IconButton,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    DialogContentText,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
+import { UserContext } from '../../service/providers/UserContextProvider';
 import { MainSection } from '../../components/MainSection/MainSection';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,10 +52,32 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
     const classes = useStyles();
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
     const [restorani, setRestorani] = useState<Restoran[]>();
+    const { authenticated, user } = useContext(UserContext);
+    const [dialog, setDialog] = useState<{ open: boolean; restoran: Restoran | null }>();
 
     useEffect(() => {
         getRestorani();
     }, []);
+
+    const handleDelete = (restoran: Restoran) => {
+        if (authenticated) {
+            deleteRestoran(restoran, user?.accessToken!)
+                .then((response) => {
+                    setNotification({
+                        message: `Uspjesno obrisan farmaceut ${restoran.ime}`,
+                        onClose: () => setNotification(undefined),
+                    });
+                })
+                .catch((error) => {
+                    notifyOnReject(setNotification, 'Greska prilikom brisanja restorana');
+                    setDialog({ open: false, restoran: null });
+                })
+                .finally(() => {
+                    getRestorani();
+                    setDialog({ open: false, restoran: null });
+                });
+        }
+    };
 
     const getRestorani = () => {
         getAllRestorani()
@@ -57,6 +85,20 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                 setRestorani(response.data);
             })
             .catch(notifyOnReject(setNotification));
+    };
+
+    const handleOpenDialog = (restoran: Restoran) => {
+        setDialog({
+            open: true,
+            restoran: restoran,
+        });
+    };
+
+    const handleCloseDialog = () => {
+        setDialog({
+            open: false,
+            restoran: null,
+        });
     };
 
     return (
@@ -69,6 +111,28 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                     onClose={notification?.onClose}
                     severity={notification?.severity}
                 />
+            )}
+            {dialog && dialog.open && (
+                <Dialog
+                    open={dialog.open}
+                    onClose={handleCloseDialog}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogTitle id="alert-dialog-title">Potvrda brisanja restorana</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            {`Da li ste sigurni da zelite obrisati farmaceuta ${dialog?.restoran?.ime}?`}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button size="large" onClick={() => handleDelete(dialog?.restoran!)} color="secondary">
+                            Potvrdi
+                        </Button>
+                        <Button size="large" onClick={() => handleCloseDialog()}>
+                            Odustani
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             )}
             <Paper className={classes.paper}>
                 <Grid container>
@@ -112,7 +176,10 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
                                                 <EditIcon />
                                             </IconButton>
-                                            <IconButton aria-label="Delete category" size="small">
+                                            <IconButton
+                                                aria-label="Delete category"
+                                                size="small"
+                                                onClick={() => handleOpenDialog(restoran!)}>
                                                 <DeleteIcon />
                                             </IconButton>
                                         </TableCell>
