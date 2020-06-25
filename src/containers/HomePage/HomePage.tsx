@@ -2,6 +2,7 @@ import React from 'react';
 import { MainSection } from '../../components/MainSection/MainSection';
 import { Divider, Typography } from '@material-ui/core';
 import { RestoraniList } from '../Restorani/RestoraniList';
+import { KategorijeList } from '../Kategorije/KategorijeList';
 
 export const HomePage: React.FC = () => {
     return (
@@ -16,6 +17,7 @@ export const HomePage: React.FC = () => {
                 Kategorije
             </Typography>
             <Divider />
+            <KategorijeList />
         </div>
     );
 };

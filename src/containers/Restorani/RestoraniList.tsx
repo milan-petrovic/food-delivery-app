@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Restoran } from '../../utils/constants/types';
 import { NotificationProps } from '../../utils/AppUtils';
 import { getAllRestorani } from '../../service/domain/RestoraniService';
-import { getImageUrlFromApi, notifyOnReject } from '../../utils/ApiUtils';
+import { getRestoranImageUrlFromApi, notifyOnReject } from '../../utils/ApiUtils';
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MotorcycleIcon from '@material-ui/icons/Motorcycle';
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         maxWidth: 345,
     },
     media: {
-        height: 140,
+        height: 180,
     },
 });
 
@@ -32,13 +32,18 @@ export const RestoraniList: React.FC = (props) => {
     return (
         <Grid container style={{ paddingTop: 20 }} spacing={2}>
             {restorani?.map((restoran, idx) => {
-                let imageUrl = getImageUrlFromApi(restoran.id!);
+                let imageUrl = getRestoranImageUrlFromApi(restoran.id!);
 
                 return (
                     <Grid item xs={12} sm={4}>
                         <Card className={classes.root}>
                             <CardActionArea>
-                                <CardMedia className={classes.media} image={imageUrl} title="Slika restorana" />
+                                <CardMedia
+                                    className={classes.media}
+                                    image={imageUrl}
+                                    title="Slika restorana"
+                                    onClick={() => console.log('click')}
+                                />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
                                         {restoran.ime}
@@ -51,9 +56,6 @@ export const RestoraniList: React.FC = (props) => {
                             <CardActions>
                                 <Button size="small" color="primary" startIcon={<MotorcycleIcon />}>
                                     {restoran.cijenaDostave + ' DIN'}
-                                </Button>
-                                <Button size="small" color="primary">
-                                    Pogledaj jela
                                 </Button>
                             </CardActions>
                         </Card>
