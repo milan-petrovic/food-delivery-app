@@ -35,6 +35,10 @@ export const getRequestConfig = (
     };
 };
 
-export const getImageUrlFromApi = (imageId: number) => {
-    return BaseRoutes.ImageUrl + `${imageId}.jpg`;
+export const getRestoranImageUrlFromApi = (imageId: number) => {
+    return BaseRoutes.RestoranImageUrl + `${imageId}.jpg`;
+};
+
+export const getKategorijaImageUrlFromApi = (imageId: number) => {
+    return BaseRoutes.KategorijaImageUrl + `${imageId}.jpg`;
 };
