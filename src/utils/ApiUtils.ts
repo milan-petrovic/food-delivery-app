@@ -36,5 +36,5 @@ export const getRequestConfig = (
 };
 
 export const getImageUrlFromApi = (imageId: number) => {
-    return BaseRoutes.ImageUrl + `${imageId}.png`;
+    return BaseRoutes.ImageUrl + `${imageId}.jpg`;
 };
