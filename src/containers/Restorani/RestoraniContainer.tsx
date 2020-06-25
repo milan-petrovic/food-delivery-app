@@ -24,6 +24,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
 import { MainSection } from '../../components/MainSection/MainSection';
+import { AppRoutes } from '../../utils/constants/routes';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -80,7 +81,7 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                             className={classes.button}
                             startIcon={<AddIcon />}
                             component={Link}
-                            to="">
+                            to={AppRoutes.RestoranKorisniciNew}>
                             Dodaj
                         </Button>
                     </Grid>

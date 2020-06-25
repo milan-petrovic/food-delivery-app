@@ -13,6 +13,7 @@ export enum AppRoutes {
     AdminKategorije = '/admin/kategorije',
     Korisnici = '/admin/korisnici',
     Restorani = '/admin/restorani',
+    RestoranKorisniciNew = '/admin/restorani/korisnik-new',
     Narudzbe = '/admin/narudzbe',
     Jela = '/business/jela',
     BusinessNarudzbe = '/business/narudzbe',
