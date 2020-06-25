@@ -2,7 +2,7 @@ import { NotificationProps } from '../../utils/AppUtils';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import {
     makeStyles,
@@ -18,11 +18,18 @@ import {
     TableCell,
     TableBody,
     IconButton,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
 import { Kategorija } from '../../utils/constants/types';
-import { getAllKategorije } from '../../service/domain/KategorijeService';
+import { getAllKategorije, deleteKategorija } from '../../service/domain/KategorijeService';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -45,10 +52,32 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
     const classes = useStyles();
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
     const [kategorije, setKategorije] = useState<Kategorija[]>();
+    const { authenticated, user } = useContext(UserContext);
+    const [dialog, setDialog] = useState<{ open: boolean; kategorija: Kategorija | null }>();
 
     useEffect(() => {
         getKategorije();
     }, []);
+
+    const handleDelete = (kategorija: Kategorija) => {
+        if (authenticated) {
+            deleteKategorija(kategorija, user?.accessToken!)
+                .then((response) => {
+                    setNotification({
+                        message: `Uspjesno obrisana kategorija ${kategorija.ime}`,
+                        onClose: () => setNotification(undefined),
+                    });
+                })
+                .catch((error) => {
+                    notifyOnReject(setNotification, 'Greska prilikom brisanja kategorije');
+                    setDialog({ open: false, kategorija: null });
+                })
+                .finally(() => {
+                    getKategorije();
+                    setDialog({ open: false, kategorija: null });
+                });
+        }
+    };
 
     const getKategorije = () => {
         getAllKategorije()
@@ -56,6 +85,20 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                 setKategorije(response.data);
             })
             .catch(notifyOnReject(setNotification));
+    };
+
+    const handleOpenDialog = (kategorija: Kategorija) => {
+        setDialog({
+            open: true,
+            kategorija: kategorija,
+        });
+    };
+
+    const handleCloseDialog = () => {
+        setDialog({
+            open: false,
+            kategorija: null,
+        });
     };
 
     return (
@@ -68,6 +111,28 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                     onClose={notification?.onClose}
                     severity={notification?.severity}
                 />
+            )}
+            {dialog && dialog.open && (
+                <Dialog
+                    open={dialog.open}
+                    onClose={handleCloseDialog}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogTitle id="alert-dialog-title">Potvrda brisanja kategorije</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            {`Da li ste sigurni da zelite obrisati kategoriju ${dialog?.kategorija?.ime}?`}
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button size="large" onClick={() => handleDelete(dialog?.kategorija!)} color="secondary">
+                            Potvrdi
+                        </Button>
+                        <Button size="large" onClick={() => handleCloseDialog()}>
+                            Odustani
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             )}
             <Paper className={classes.paper}>
                 <Grid container>
@@ -103,7 +168,10 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
                                                 <EditIcon />
                                             </IconButton>
-                                            <IconButton aria-label="Delete category" size="small">
+                                            <IconButton
+                                                aria-label="Delete category"
+                                                size="small"
+                                                onClick={() => handleOpenDialog(kategorija!)}>
                                                 <DeleteIcon />
                                             </IconButton>
                                         </TableCell>
