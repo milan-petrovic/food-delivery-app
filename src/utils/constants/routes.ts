@@ -1,6 +1,7 @@
 export enum BaseRoutes {
     BaseUrl = 'http://localhost:3000',
     ApiUrl = 'http://ec2-52-59-235-7.eu-central-1.compute.amazonaws.com:8080',
+    ImageUrl = 'http://s3.eu-central-1.amazonaws.com/donesi.projekat/restorani/',
 }
 
 export enum AppRoutes {
