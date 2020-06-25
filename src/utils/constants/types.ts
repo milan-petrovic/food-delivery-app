@@ -13,6 +13,8 @@ export interface Restoran {
     email: string;
     opis: string;
     usertbl: User;
+    cijenaDostave: number;
+    radnoVrijeme: string;
 }
 
 export interface Kategorija {

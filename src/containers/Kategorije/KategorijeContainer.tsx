@@ -2,7 +2,7 @@ import { NotificationProps } from '../../utils/AppUtils';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import  { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import {
     makeStyles,
@@ -112,7 +112,7 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                     severity={notification?.severity}
                 />
             )}
-             {dialog && dialog.open && (
+            {dialog && dialog.open && (
                 <Dialog
                     open={dialog.open}
                     onClose={handleCloseDialog}

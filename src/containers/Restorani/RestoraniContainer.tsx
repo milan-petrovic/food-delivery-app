@@ -158,6 +158,8 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                                 <TableCell>Telefon</TableCell>
                                 <TableCell>E-mail</TableCell>
                                 <TableCell>Opis</TableCell>
+                                <TableCell>Radno vrijeme</TableCell>
+                                <TableCell>Cijena dostave</TableCell>
                                 <TableCell>Korisnik</TableCell>
                                 <TableCell>Akcije</TableCell>
                             </TableRow>
@@ -171,6 +173,8 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                                         <TableCell align="left">{restoran.tel}</TableCell>
                                         <TableCell align="left">{restoran.email}</TableCell>
                                         <TableCell align="left">{restoran.opis}</TableCell>
+                                        <TableCell align="left">{restoran.radnoVrijeme}</TableCell>
+                                        <TableCell align="left">{restoran.cijenaDostave}</TableCell>
                                         <TableCell align="left">{restoran.usertbl.uname}</TableCell>
                                         <TableCell align="left">
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
