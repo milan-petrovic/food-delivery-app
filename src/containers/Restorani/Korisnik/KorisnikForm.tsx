@@ -117,7 +117,7 @@ export const KorisnikForm: React.FC<NotificationProps> = (props) => {
             .then((response) => {
                 console.log(response);
             })
-            .catch(notifyOnReject(set   Notification, 'Greska prilikom kreiranja korisnika'))
+            .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja korisnika'))
             .finally(() => {
                 setSubmitting(false);
             });
