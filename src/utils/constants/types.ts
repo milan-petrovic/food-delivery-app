@@ -12,7 +12,7 @@ export interface Restoran {
     tel: string;
     email: string;
     opis: string;
-    usertbl: User;
+    usertbl: User | null | undefined;
     cijenaDostave: number;
     radnoVrijeme: string;
 }

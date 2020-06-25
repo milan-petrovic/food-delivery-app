@@ -26,10 +26,11 @@ import {
     DialogActions,
     DialogContentText,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import { MainSection } from '../../components/MainSection/MainSection';
+import { AppRoutes } from '../../utils/constants/routes';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -54,10 +55,18 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
     const [restorani, setRestorani] = useState<Restoran[]>();
     const { authenticated, user } = useContext(UserContext);
     const [dialog, setDialog] = useState<{ open: boolean; restoran: Restoran | null }>();
+    const location = useLocation();
 
     useEffect(() => {
         getRestorani();
     }, []);
+
+    useEffect(() => {
+        if (location && location.state) {
+            const pushedNotification = location.state as NotificationProps;
+            setNotification({ ...pushedNotification, onClose: () => setNotification(undefined) });
+        }
+    }, [location]);
 
     const handleDelete = (restoran: Restoran) => {
         if (authenticated) {
@@ -144,7 +153,7 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                             className={classes.button}
                             startIcon={<AddIcon />}
                             component={Link}
-                            to="">
+                            to={AppRoutes.RestoranKorisniciNew}>
                             Dodaj
                         </Button>
                     </Grid>
@@ -175,7 +184,7 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                                         <TableCell align="left">{restoran.opis}</TableCell>
                                         <TableCell align="left">{restoran.radnoVrijeme}</TableCell>
                                         <TableCell align="left">{restoran.cijenaDostave}</TableCell>
-                                        <TableCell align="left">{restoran.usertbl.uname}</TableCell>
+                                        <TableCell align="left">{restoran.usertbl!.uname}</TableCell>
                                         <TableCell align="left">
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
                                                 <EditIcon />
