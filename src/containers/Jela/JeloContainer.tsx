@@ -118,10 +118,10 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
                     onClose={handleCloseDialog}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
-                    <DialogTitle id="alert-dialog-title">Potvrda brisanja kategorije</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">Potvrda brisanja jela</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            {`Da li ste sigurni da zelite obrisati kategoriju ${dialog?.jelo?.ime}?`}
+                            {`Da li ste sigurni da zelite obrisati jelo ${dialog?.jelo?.ime}?`}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
