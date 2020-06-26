@@ -60,10 +60,12 @@ export interface AuthUser {
     id?: number;
     username?: string;
     role?: string;
+    restoran?: number;
 }
 
 export interface DecodedToken {
     jti: number;
     username: string;
     type: string;
+    restoran?: number;
 }

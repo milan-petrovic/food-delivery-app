@@ -10,6 +10,7 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 interface MainMenuItemsProps {
     role?: string;
@@ -36,6 +37,12 @@ export const MainMenuItems: React.FC<MainMenuItemsProps> = (props: MainMenuItems
                                 <ListAltIcon />
                             </ListItemIcon>
                             <ListItemText primary="Moje narudzbe" />
+                        </ListItem>
+                        <ListItem button component={Link} to={`/admin/restorani/image/${user?.restoran!}`}>
+                            <ListItemIcon>
+                                <SettingsIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Podesavanja slike" />
                         </ListItem>
                     </>
                 )}

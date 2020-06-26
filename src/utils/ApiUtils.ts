@@ -35,6 +35,17 @@ export const getRequestConfig = (
     };
 };
 
+export const getRequestImageConfig = (
+    accessToken: string,
+): { headers: { Authorization: string; 'Content-Type': string } } => {
+    return {
+        headers: {
+            Authorization: `${accessToken}`,
+            'Content-Type': 'multipart/form-data',
+        },
+    };
+};
+
 export const getRestoranImageUrlFromApi = (imageId: number) => {
     return BaseRoutes.RestoranImageUrl + `${imageId}.jpg`;
 };

@@ -143,6 +143,7 @@ export const LoginForm: React.FC<NotificationProps> = (props) => {
                         username: decodedToken.username,
                         role: decodedToken.type,
                         id: decodedToken.jti,
+                        restoran: decodedToken.restoran,
                     });
 
                 if (decodedToken.type === Roles.ADMIN) {

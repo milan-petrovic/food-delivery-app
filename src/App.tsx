@@ -14,6 +14,7 @@ import { HomePage } from './containers/HomePage/HomePage';
 import { KorisnikForm } from './containers/Restorani/Korisnik/KorisnikForm';
 import { NarudzbineContainer } from './containers/Narudzbine/NarudzbineContainer';
 import { RestoranForm } from './containers/Restorani/RestoranForm';
+import { RestoranImageForm } from './containers/Restorani/RestoranImageForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,6 +67,7 @@ const App: React.FC = () => {
                             <Route path={AppRoutes.Restorani} exact component={RestoraniContainer} />
                             <Route path={AppRoutes.RestoranKorisniciNew} exact component={KorisnikForm} />
                             <Route path={AppRoutes.RestoranNew} exact component={RestoranForm} />
+                            <Route path={AppRoutes.RestoranNewImage} exact component={RestoranImageForm} />
                             <Route path={AppRoutes.AdminKategorije} exact component={KategorijeContainer} />
                             <Route path={AppRoutes.Narudzbe} exact component={NarudzbineContainer} />
                             <Route path="/" exact component={HomePage} />
