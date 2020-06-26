@@ -3,8 +3,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import React, { useState, useEffect, useContext } from 'react';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { Restoran } from '../../utils/constants/types';
-import { deleteRestoran, getAllRestorani } from '../../service/domain/RestoraniService';
+import { deleteRestoran, deleteRestoranImage, getAllRestorani } from '../../service/domain/RestoraniService';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import {
     makeStyles,
@@ -26,11 +27,11 @@ import {
     DialogActions,
     DialogContentText,
 } from '@material-ui/core';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
 import { UserContext } from '../../service/providers/UserContextProvider';
-import { MainSection } from '../../components/MainSection/MainSection';
 import { AppRoutes } from '../../utils/constants/routes';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -56,6 +57,7 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
     const { authenticated, user } = useContext(UserContext);
     const [dialog, setDialog] = useState<{ open: boolean; restoran: Restoran | null }>();
     const location = useLocation();
+    const history = useHistory();
 
     useEffect(() => {
         getRestorani();
@@ -108,6 +110,12 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
             open: false,
             restoran: null,
         });
+    };
+
+    const handleDeleteImage = (restoranId: number) => {
+        deleteRestoranImage(restoranId, user?.accessToken!)
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error));
     };
 
     return (
@@ -171,6 +179,7 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                                 <TableCell>Cijena dostave</TableCell>
                                 <TableCell>Korisnik</TableCell>
                                 <TableCell>Akcije</TableCell>
+                                <TableCell>Slika</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -194,6 +203,15 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                                                 size="small"
                                                 onClick={() => handleOpenDialog(restoran!)}>
                                                 <DeleteIcon />
+                                            </IconButton>
+                                        </TableCell>
+                                        <TableCell align="left">
+                                            <IconButton
+                                                aria-label="Add image"
+                                                color="secondary"
+                                                size="small"
+                                                onClick={() => history.push(`/admin/restorani/image/${restoran.id!}`)}>
+                                                <SettingsIcon />
                                             </IconButton>
                                         </TableCell>
                                     </TableRow>

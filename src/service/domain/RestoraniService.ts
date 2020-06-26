@@ -1,6 +1,6 @@
 import { axiosInstance } from '../../api/axios';
 import { Restoran, User } from '../../utils/constants/types';
-import { getRequestConfig } from '../../utils/ApiUtils';
+import { getRequestConfig, getRequestImageConfig } from '../../utils/ApiUtils';
 
 export const getAllRestorani = () => {
     return axiosInstance.get('/restoran');
@@ -14,4 +14,12 @@ export const postRestoran = (requestData: Restoran, accessToken: string, created
     requestData.usertbl = createdUser;
     console.log(requestData);
     return axiosInstance.post('/restoran', requestData, getRequestConfig(accessToken));
+};
+
+export const postRestoranImage = (restoranId: number, formData: FormData, accessToken: string) => {
+    return axiosInstance.post(`/restoran/${restoranId}/img`, formData, getRequestImageConfig(accessToken));
+};
+
+export const deleteRestoranImage = (restoranId: number, accessToken: string) => {
+    return axiosInstance.delete(`/restoran/${restoranId}/img`, getRequestImageConfig(accessToken));
 };
