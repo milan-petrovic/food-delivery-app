@@ -7,7 +7,7 @@ export const postUser = (requestData: User) => {
 };
 
 export const getAllAdmini = (accessToken: string) => {
-    return axiosInstance.get('/admins', getRequestConfig(accessToken))
+    return axiosInstance.get('/admins', getRequestConfig(accessToken));
 };
 
 export const deleteAdmin = (admin: User, accessToken: string) => {

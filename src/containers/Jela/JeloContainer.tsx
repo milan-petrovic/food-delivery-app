@@ -56,7 +56,7 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
     const [dialog, setDialog] = useState<{ open: boolean; jelo: Jelo | null }>();
 
     useEffect(() => {
-        getJela(user?.accessToken!);
+        getJela();
     }, []);
 
     const handleDelete = (jelo: Jelo) => {
@@ -73,13 +73,13 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
                     setDialog({ open: false, jelo: null });
                 })
                 .finally(() => {
-                    getJela(user?.accessToken!);
+                    getJela();
                     setDialog({ open: false, jelo: null });
                 });
         }
     };
 
-    const getJela = (accessToken: string) => {
+    const getJela = () => {
         getAllJela(user?.restoran!, user?.accessToken!)
             .then((response) => {
                 setJela(response.data);

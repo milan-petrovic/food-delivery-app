@@ -60,7 +60,6 @@ export const AdminContainer: React.FC<NotificationProps> = (props) => {
         getAdmini();
     }, []);
 
-
     const getAdmini = () => {
         getAllAdmini(user?.accessToken!)
             .then((response) => {
@@ -102,7 +101,6 @@ export const AdminContainer: React.FC<NotificationProps> = (props) => {
             admin: null,
         });
     };
-
 
     return (
         <Container component="main" maxWidth="xl">
@@ -159,7 +157,6 @@ export const AdminContainer: React.FC<NotificationProps> = (props) => {
                                 <TableCell>ID Admina</TableCell>
                                 <TableCell align="center">Korisnicko ime</TableCell>
                                 <TableCell align="right">Akcije</TableCell>
-
                             </TableRow>
                         </TableHead>
                         <TableBody>
