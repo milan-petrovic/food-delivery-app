@@ -3,6 +3,7 @@ export enum BaseRoutes {
     ApiUrl = 'http://ec2-52-59-235-7.eu-central-1.compute.amazonaws.com:8080',
     RestoranImageUrl = 'http://s3.eu-central-1.amazonaws.com/donesi.projekat/restorani/',
     KategorijaImageUrl = 'http://s3.eu-central-1.amazonaws.com/donesi.projekat/kategorije/',
+    JeloImageUrl = 'http://s3.eu-central-1.amazonaws.com/donesi.projekat/jela/',
 }
 
 export enum AppRoutes {
@@ -20,8 +21,9 @@ export enum AppRoutes {
     RestoranNewImage = '/admin/restorani/image/:id?',
     Narudzbe = '/admin/narudzbe',
     Jela = '/business/jela',
+    JelaNewImage = '/admin/jela/image/:id?',
     JelaNew = '/business/jela/new',
     BusinessNarudzbe = '/business/narudzbe',
     KategorijaNew = '/admin/kategorije/new',
-    AdminNew = '/admini/new'
+    AdminNew = '/admini/new',
 }

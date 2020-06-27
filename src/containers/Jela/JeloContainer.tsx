@@ -24,12 +24,14 @@ import {
     DialogContentText,
     DialogActions,
 } from '@material-ui/core';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import React from 'react';
 import { Jelo } from '../../utils/constants/types';
 import { getAllJela, deleteJelo } from '../../service/domain/JeloService';
+import { AppRoutes } from '../../utils/constants/routes';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -55,6 +57,7 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
     const { authenticated, user } = useContext(UserContext);
     const [dialog, setDialog] = useState<{ open: boolean; jelo: Jelo | null }>();
     const location = useLocation();
+    const history = useHistory();
 
     useEffect(() => {
         getJela();
@@ -152,7 +155,7 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
                             className={classes.button}
                             startIcon={<AddIcon />}
                             component={Link}
-                            to="">
+                            to={AppRoutes.JelaNew}>
                             Dodaj
                         </Button>
                     </Grid>
@@ -162,12 +165,12 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Ime</TableCell>
-                                <TableCell align="center">Cena</TableCell>
-                                <TableCell align="center">Sastav</TableCell>
-                                <TableCell align="center">Kategorija</TableCell>
-                                <TableCell align="center">Restoran</TableCell>
-                                <TableCell align="center">Opis</TableCell>
-                                <TableCell align="right">Akcije</TableCell>
+                                <TableCell align="left">Cena</TableCell>
+                                <TableCell align="left">Sastav</TableCell>
+                                <TableCell align="left">Kategorija</TableCell>
+                                <TableCell align="left">Opis</TableCell>
+                                <TableCell align="left">Akcije</TableCell>
+                                <TableCell align="left">Slike</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -175,12 +178,11 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
                                 return (
                                     <TableRow key={idx}>
                                         <TableCell>{jelo.ime}</TableCell>
-                                        <TableCell align="center">{jelo.cijena}</TableCell>
-                                        <TableCell align="center">{jelo.sastav}</TableCell>
-                                        <TableCell align="center">{jelo.kategorijaBean!.ime}</TableCell>
-                                        <TableCell align="center">{jelo.restoranBean!.ime}</TableCell>
-                                        <TableCell align="center">{jelo.opis}</TableCell>
-                                        <TableCell align="right">
+                                        <TableCell align="left">{jelo.cijena}</TableCell>
+                                        <TableCell align="left">{jelo.sastav}</TableCell>
+                                        <TableCell align="left">{jelo.kategorijaBean!.ime}</TableCell>
+                                        <TableCell align="left">{jelo.opis}</TableCell>
+                                        <TableCell align="left">
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
                                                 <EditIcon />
                                             </IconButton>
@@ -189,6 +191,15 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
                                                 size="small"
                                                 onClick={() => handleOpenDialog(jelo!)}>
                                                 <DeleteIcon />
+                                            </IconButton>
+                                        </TableCell>
+                                        <TableCell align="left">
+                                            <IconButton
+                                                aria-label="Add image"
+                                                color="secondary"
+                                                size="small"
+                                                onClick={() => history.push(`/admin/jela/image/${jelo.id!}`)}>
+                                                <SettingsIcon />
                                             </IconButton>
                                         </TableCell>
                                     </TableRow>

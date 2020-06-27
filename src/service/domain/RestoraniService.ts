@@ -23,3 +23,7 @@ export const postRestoranImage = (restoranId: number, formData: FormData, access
 export const deleteRestoranImage = (restoranId: number, accessToken: string) => {
     return axiosInstance.delete(`/restoran/${restoranId}/img`, getRequestImageConfig(accessToken));
 };
+
+export const getRestoranById = (restoranId: number) => {
+    return axiosInstance.get(`/restoran/${restoranId}`);
+};
