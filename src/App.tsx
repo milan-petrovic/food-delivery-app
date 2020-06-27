@@ -19,6 +19,7 @@ import { JeloContainer } from './containers/Jela/JeloContainer';
 import { AdminContainer } from './containers/Administratori/AdminContainer';
 import { KategorijaForm } from './containers/Kategorije/KategorijaForm';
 import { KategorijaImageForm } from './containers/Kategorije/KategorijaImageForm';
+import { AdminForm } from './containers/Administratori/AdminForm';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -78,6 +79,7 @@ const App: React.FC = () => {
                             <Route path={AppRoutes.Admini} exact component={AdminContainer} />
                             <Route path={AppRoutes.KategorijaNew} exact component={KategorijaForm} />
                             <Route path={AppRoutes.AdminKategorijeNewImage} exact component={KategorijaImageForm} />
+                            <Route path={AppRoutes.AdminNew} exact component = {AdminForm} />
                             <Route path="/" exact component={HomePage} />
                         </Switch>
                     </main>
