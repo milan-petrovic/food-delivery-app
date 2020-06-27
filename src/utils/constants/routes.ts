@@ -12,6 +12,7 @@ export enum AppRoutes {
     Feed = '/feed',
     FeedKategorije = '/feed/kategorije',
     AdminKategorije = '/admin/kategorije',
+    AdminKategorijeNewImage = '/admin/kategorije/image/:id?',
     Korisnici = '/admin/korisnici',
     Restorani = '/admin/restorani',
     RestoranKorisniciNew = '/admin/restorani/korisnik-new',
