@@ -24,13 +24,14 @@ import {
     DialogContentText,
     DialogActions,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
 import { Kategorija } from '../../utils/constants/types';
 import { getAllKategorije, deleteKategorija } from '../../service/domain/KategorijeService';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import { AppRoutes } from '../../utils/constants/routes';
 import React from 'react';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -54,11 +55,20 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
     const [kategorije, setKategorije] = useState<Kategorija[]>();
     const { authenticated, user } = useContext(UserContext);
+    const history = useHistory();
     const [dialog, setDialog] = useState<{ open: boolean; kategorija: Kategorija | null }>();
+    const location = useLocation();
 
     useEffect(() => {
         getKategorije();
     }, []);
+
+    useEffect(() => {
+        if (location && location.state) {
+            const pushedNotification = location.state as NotificationProps;
+            setNotification({ ...pushedNotification, onClose: () => setNotification(undefined) });
+        }
+    }, [location]);
 
     const handleDelete = (kategorija: Kategorija) => {
         if (authenticated) {
@@ -155,8 +165,9 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Ime</TableCell>
-                                <TableCell align="center">Opis</TableCell>
-                                <TableCell align="right">Akcije</TableCell>
+                                <TableCell align="left">Opis</TableCell>
+                                <TableCell align="left">Akcije</TableCell>
+                                <TableCell align="left">Slike</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -164,8 +175,8 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                                 return (
                                     <TableRow key={idx}>
                                         <TableCell>{kategorija.ime}</TableCell>
-                                        <TableCell align="center">{kategorija.opis}</TableCell>
-                                        <TableCell align="right">
+                                        <TableCell align="left">{kategorija.opis}</TableCell>
+                                        <TableCell align="left">
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
                                                 <EditIcon />
                                             </IconButton>
@@ -174,6 +185,17 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                                                 size="small"
                                                 onClick={() => handleOpenDialog(kategorija!)}>
                                                 <DeleteIcon />
+                                            </IconButton>
+                                        </TableCell>
+                                        <TableCell align="left">
+                                            <IconButton
+                                                aria-label="Add image"
+                                                color="secondary"
+                                                size="small"
+                                                onClick={() =>
+                                                    history.push(`/admin/kategorije/image/${kategorija.id!}`)
+                                                }>
+                                                <SettingsIcon />
                                             </IconButton>
                                         </TableCell>
                                     </TableRow>

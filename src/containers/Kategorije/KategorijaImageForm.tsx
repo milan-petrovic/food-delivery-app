@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { NotificationProps } from '../../utils/AppUtils';
 import { useHistory, useRouteMatch } from 'react-router';
 import { AppRoutes } from '../../utils/constants/routes';
-import { Avatar, Button, Container, CssBaseline, Grid, TextField, Typography } from '@material-ui/core';
-import { axiosInstance } from '../../api/axios';
-import { getRequestImageConfig, notifyOnReject } from '../../utils/ApiUtils';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import { makeStyles } from '@material-ui/core/styles';
+import { Avatar, Button, Container, CssBaseline, Grid, TextField, Typography } from '@material-ui/core';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
-import { deleteRestoranImage, postRestoranImage } from '../../service/domain/RestoraniService';
-import { NotificationProps } from '../../utils/AppUtils';
 import { Notification } from '../../components/Notification/Notification';
+import { notifyOnReject } from '../../utils/ApiUtils';
+import { deleteRestoranImage, postRestoranImage } from '../../service/domain/RestoraniService';
+import { deleteKategorijaImage, postKategorijaImage } from '../../service/domain/KategorijeService';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const RestoranImageForm: React.FC = (props) => {
+export const KategorijaImageForm: React.FC = (props) => {
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
-    const matchId = useRouteMatch<{ id: string }>(AppRoutes.RestoranNewImage)?.params.id;
+    const matchId = useRouteMatch<{ id: string }>(AppRoutes.AdminKategorijeNewImage)?.params.id;
     const [image, setImage] = useState<File>();
     const { user } = useContext(UserContext);
     const classes = useStyles();
@@ -62,23 +62,18 @@ export const RestoranImageForm: React.FC = (props) => {
         const formData = new FormData();
         formData.append('file', image!);
 
-        postRestoranImage(Number(matchId), formData, user?.accessToken!)
+        postKategorijaImage(Number(matchId), formData, user?.accessToken!)
             .then((response) => {
-                user && user.restoran === -1
-                    ? history.push(AppRoutes.Restorani, {
-                          message: 'Uspjesno dodana slika',
-                          popupDuration: 5000,
-                      })
-                    : history.push(AppRoutes.Jela, {
-                          message: 'Uspjesno dodana slika',
-                          popupDuration: 5000,
-                      });
+                history.push(AppRoutes.AdminKategorije, {
+                    message: 'Uspjesno dodana slika',
+                    popupDuration: 5000,
+                });
             })
             .catch(notifyOnReject(setNotification, 'Greska prilikom uploada slike.'));
     };
 
     const handleDelete = () => {
-        deleteRestoranImage(Number(matchId), user?.accessToken!)
+        deleteKategorijaImage(Number(matchId), user?.accessToken!)
             .then((response) => {
                 setNotification({
                     message: 'Uspjesno obrisana slika',
@@ -96,7 +91,7 @@ export const RestoranImageForm: React.FC = (props) => {
                     <QueuePlayNextIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Podesavanje slike restorana
+                    Podesavanje slike kategorije
                 </Typography>
                 {notification && (
                     <Notification

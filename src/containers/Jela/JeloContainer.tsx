@@ -24,7 +24,7 @@ import {
     DialogContentText,
     DialogActions,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import React from 'react';
@@ -54,10 +54,18 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
     const [jela, setJela] = useState<Jelo[]>();
     const { authenticated, user } = useContext(UserContext);
     const [dialog, setDialog] = useState<{ open: boolean; jelo: Jelo | null }>();
+    const location = useLocation();
 
     useEffect(() => {
         getJela();
     }, []);
+
+    useEffect(() => {
+        if (location && location.state) {
+            const pushedNotification = location.state as NotificationProps;
+            setNotification({ ...pushedNotification, onClose: () => setNotification(undefined) });
+        }
+    }, [location]);
 
     const handleDelete = (jelo: Jelo) => {
         if (authenticated) {
