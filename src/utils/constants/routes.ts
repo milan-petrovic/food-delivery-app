@@ -20,6 +20,7 @@ export enum AppRoutes {
     RestoranNewImage = '/admin/restorani/image/:id?',
     Narudzbe = '/admin/narudzbe',
     Jela = '/business/jela',
+    JelaNew = '/business/jela/new',
     BusinessNarudzbe = '/business/narudzbe',
     KategorijaNew = '/admin/kategorije/new',
 }

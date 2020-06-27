@@ -9,3 +9,7 @@ export const getAllJela = (restoran: number, accesToken: string) => {
 export const deleteJelo = (jelo: Jelo, accesToken: string) => {
     return axiosInstance.delete(`/jelo/${jelo.id}`, getRequestConfig(accesToken));
 };
+
+export const postJelo = (requestData: Jelo, accesToken: string) => {
+    return axiosInstance.post('/jelo', requestData, getRequestConfig(accesToken));
+};

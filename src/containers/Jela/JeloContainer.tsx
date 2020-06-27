@@ -177,8 +177,8 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
                                         <TableCell>{jelo.ime}</TableCell>
                                         <TableCell align="center">{jelo.cijena}</TableCell>
                                         <TableCell align="center">{jelo.sastav}</TableCell>
-                                        <TableCell align="center">{jelo.kategorijaBean.ime}</TableCell>
-                                        <TableCell align="center">{jelo.restoranBean.ime}</TableCell>
+                                        <TableCell align="center">{jelo.kategorijaBean!.ime}</TableCell>
+                                        <TableCell align="center">{jelo.restoranBean!.ime}</TableCell>
                                         <TableCell align="center">{jelo.opis}</TableCell>
                                         <TableCell align="right">
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
