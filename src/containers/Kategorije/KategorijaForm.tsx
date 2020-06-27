@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { NotificationProps } from '../../utils/AppUtils';
 import { useHistory } from 'react-router';
-import {     Kategorija } from '../../utils/constants/types';
+import { Kategorija } from '../../utils/constants/types';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';

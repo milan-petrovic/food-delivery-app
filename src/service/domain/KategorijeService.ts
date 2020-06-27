@@ -7,7 +7,7 @@ export const getAllKategorije = () => {
 };
 
 export const postKategorija = (requestData: Kategorija, accessToken: string) => {
-    return axiosInstance.post('/kategorija',requestData, getRequestConfig(accessToken));
+    return axiosInstance.post('/kategorija', requestData, getRequestConfig(accessToken));
 };
 
 export const deleteKategorija = (kategorija: Kategorija, accesToken: string) => {
