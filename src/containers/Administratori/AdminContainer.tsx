@@ -31,6 +31,8 @@ import React from 'react';
 import { getAllAdmini, deleteAdmin } from '../../service/domain/KorisniciService';
 import { string } from 'yup';
 import { User } from '../../utils/constants/types';
+import { AppRoutes } from '../../utils/constants/routes';
+
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -145,7 +147,7 @@ export const AdminContainer: React.FC<NotificationProps> = (props) => {
                             className={classes.button}
                             startIcon={<AddIcon />}
                             component={Link}
-                            to="">
+                            to={AppRoutes.AdminNew}>
                             Dodaj
                         </Button>
                     </Grid>
