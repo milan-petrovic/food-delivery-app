@@ -20,4 +20,5 @@ export enum AppRoutes {
     Narudzbe = '/admin/narudzbe',
     Jela = '/business/jela',
     BusinessNarudzbe = '/business/narudzbe',
+    KategorijaNew = '/admin/kategorije/new',
 }

@@ -29,6 +29,7 @@ import { Notification } from '../../components/Notification/Notification';
 import { Kategorija } from '../../utils/constants/types';
 import { getAllKategorije, deleteKategorija } from '../../service/domain/KategorijeService';
 import { UserContext } from '../../service/providers/UserContextProvider';
+import { AppRoutes } from '../../utils/constants/routes';
 import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -144,7 +145,7 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                             className={classes.button}
                             startIcon={<AddIcon />}
                             component={Link}
-                            to="">
+                            to={AppRoutes.KategorijaNew}>
                             Dodaj
                         </Button>
                     </Grid>
