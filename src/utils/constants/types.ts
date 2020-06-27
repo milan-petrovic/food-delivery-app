@@ -25,8 +25,8 @@ export interface Kategorija {
 
 export interface Jelo {
     id?: number;
-    restoranBean: Restoran;
-    kategorijaBean: Kategorija;
+    restoranBean: Restoran | null | undefined;
+    kategorijaBean: Kategorija | null | undefined;
     ime: string;
     opis: string;
     sastav: string;

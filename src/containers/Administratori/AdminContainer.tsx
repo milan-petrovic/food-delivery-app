@@ -33,7 +33,6 @@ import { string } from 'yup';
 import { User } from '../../utils/constants/types';
 import { AppRoutes } from '../../utils/constants/routes';
 
-
 const useStyles = makeStyles((theme) => ({
     table: {
         minWidth: 650,
