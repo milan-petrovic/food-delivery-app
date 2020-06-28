@@ -31,29 +31,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const section = {
-    image:
-        'https://images.unsplash.com/photo-1526367790999-0150786686a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80',
-    primaryText: 'Donesi hranu',
-    secondaryText: 'Ovo je najbolja aplikacija za dostavu hrane',
-};
+export interface MainSectionProps {
+    image: string;
+    name: string;
+    description: string;
+}
 
-export const MainSection: React.FC = () => {
+export const MainSection: React.FC<MainSectionProps> = (props) => {
     const classes = useStyles();
 
     return (
-        <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${section.image})` }}>
+        <Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${props.image})` }}>
             {/* Increase the priority of the hero background image */}
-            {<img style={{ display: 'none' }} src={section.image} />}
+            {<img style={{ display: 'none' }} src={props.image} />}
             <div className={classes.overlay} />
             <Grid container>
                 <Grid item md={6}>
                     <div className={classes.mainFeaturedPostContent}>
                         <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                            {section.primaryText}
+                            {props.name}
                         </Typography>
                         <Typography variant="h5" color="inherit" paragraph>
-                            {section.secondaryText}
+                            {props.description}
                         </Typography>
                     </div>
                 </Grid>

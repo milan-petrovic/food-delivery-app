@@ -91,7 +91,7 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
     };
 
     const getJela = () => {
-        getAllJela(user?.restoran!, user?.accessToken!)
+        getAllJela(user?.restoran!)
             .then((response) => {
                 setJela(response.data);
             })
