@@ -11,6 +11,7 @@ import {
     ListItemAvatar,
     ListItemIcon,
     ListItemText,
+    Toolbar,
 } from '@material-ui/core';
 import clsx from 'clsx';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -21,32 +22,19 @@ import { Link } from 'react-router-dom';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 const useStyles = makeStyles((theme) => ({
-    drawerPaper: {
-        position: 'relative',
-        whiteSpace: 'nowrap',
+    drawer: {
         width: drawerWidth,
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
+        flexShrink: 0,
     },
-    drawerPaperClose: {
-        overflowX: 'hidden',
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        width: theme.spacing(8),
-        [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(9),
-        },
+    drawerPaper: {
+        width: drawerWidth,
     },
-    toolbarIcon: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: '0 8px',
-        ...theme.mixins.toolbar,
+    drawerContainer: {
+        overflow: 'auto',
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
     },
     avatarColor: {
         color: theme.palette.primary.main,
@@ -57,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 export const SideDrawer: React.FC<ToggleProps> = ({ onClick, open }: ToggleProps) => {
     const classes = useStyles();
     const { authenticated, user } = useContext(UserContext);
+    let visibleClass;
 
     const getFirstCharacterForAvatar = (username?: string) => {
         return username?.charAt(0).toUpperCase();
@@ -64,50 +53,49 @@ export const SideDrawer: React.FC<ToggleProps> = ({ onClick, open }: ToggleProps
 
     return (
         <Drawer
+            className={classes.drawer}
             variant="permanent"
+            style={!authenticated ? { display: 'none' } : {}}
             classes={{
-                paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-            }}
-            open={open}>
-            <div className={classes.toolbarIcon}>
-                <IconButton onClick={onClick}>
-                    <ChevronLeftIcon />
-                </IconButton>
-            </div>
-            <List>
-                {authenticated && (
-                    <>
-                        <List>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar className={classes.avatarColor}>
-                                        {getFirstCharacterForAvatar(user && user.username)}
-                                    </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText primary={user && user.username} />
+                paper: classes.drawerPaper,
+            }}>
+            <Toolbar />
+            <div className={classes.drawerContainer}>
+                <List>
+                    {authenticated && (
+                        <>
+                            <List>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar className={classes.avatarColor}>
+                                            {getFirstCharacterForAvatar(user && user.username)}
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={user && user.username} />
+                                </ListItem>
+                            </List>
+                            <Divider />
+                            <List>{<MainMenuItems role={user?.role} />}</List>
+                        </>
+                    )}
+                    {!authenticated && (
+                        <>
+                            <ListItem button component={Link} to={AppRoutes.Feed}>
+                                <ListItemIcon>
+                                    <VpnKeyIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Restorani" />
                             </ListItem>
-                        </List>
-                        <Divider />
-                        <List>{<MainMenuItems role={user?.role} />}</List>
-                    </>
-                )}
-                {!authenticated && (
-                    <>
-                        <ListItem button component={Link} to={AppRoutes.Feed}>
-                            <ListItemIcon>
-                                <VpnKeyIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Restorani" />
-                        </ListItem>
-                        <ListItem button component={Link} to={AppRoutes.FeedKategorije}>
-                            <ListItemIcon>
-                                <VpnKeyIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Kategorije" />
-                        </ListItem>
-                    </>
-                )}
-            </List>
+                            <ListItem button component={Link} to={AppRoutes.FeedKategorije}>
+                                <ListItemIcon>
+                                    <VpnKeyIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Kategorije" />
+                            </ListItem>
+                        </>
+                    )}
+                </List>
+            </div>
         </Drawer>
     );
 };
