@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 export const SideDrawer: React.FC<ToggleProps> = ({ onClick, open }: ToggleProps) => {
     const classes = useStyles();
     const { authenticated, user } = useContext(UserContext);
-    let visibleClass;
 
     const getFirstCharacterForAvatar = (username?: string) => {
         return username?.charAt(0).toUpperCase();

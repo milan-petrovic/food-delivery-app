@@ -77,8 +77,8 @@ export const RestoranDetalji: React.FC = (props) => {
     return (
         <div>
             <MainSection image={restoranImage!} name={restoran?.ime!} description={restoran?.opis!} />
-            <Grid container style={{ padding: '16px' }} spacing={2}>
-                <Grid xs={12} md={8} style={{ padding: '8px' }}>
+            <Grid container style={{ padding: '48px' }} spacing={2}>
+                <Grid xs={12} md={8} style={{ padding: '16px' }}>
                     <Box fontWeight="fontWeightBold" fontSize="h5.fontSize" m={1}>
                         Jela
                     </Box>
