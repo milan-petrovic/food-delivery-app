@@ -6,6 +6,7 @@ import { getRestoranImageUrlFromApi, notifyOnReject } from '../../utils/ApiUtils
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MotorcycleIcon from '@material-ui/icons/Motorcycle';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles({
     root: {
@@ -20,6 +21,7 @@ export const RestoraniList: React.FC = (props) => {
     const [restorani, setRestorani] = useState<Restoran[]>();
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
     const classes = useStyles();
+    const history = useHistory();
 
     useEffect(() => {
         getAllRestorani()
@@ -42,7 +44,7 @@ export const RestoraniList: React.FC = (props) => {
                                     className={classes.media}
                                     image={imageUrl}
                                     title="Slika restorana"
-                                    onClick={() => console.log('click')}
+                                    onClick={() => history.push(`/restoran/detalji/${restoran.id!}`)}
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">

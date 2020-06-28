@@ -2,8 +2,8 @@ import { axiosInstance } from '../../api/axios';
 import { getRequestConfig, getRequestImageConfig } from '../../utils/ApiUtils';
 import { Jelo, Restoran } from '../../utils/constants/types';
 
-export const getAllJela = (restoran: number, accesToken: string) => {
-    return axiosInstance.get(`/${restoran}/jela`, getRequestConfig(accesToken));
+export const getAllJela = (restoran: number) => {
+    return axiosInstance.get(`/${restoran}/jela`);
 };
 
 export const deleteJelo = (jelo: Jelo, accesToken: string) => {

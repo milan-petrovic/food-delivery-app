@@ -53,3 +53,7 @@ export const getRestoranImageUrlFromApi = (imageId: number) => {
 export const getKategorijaImageUrlFromApi = (imageId: number) => {
     return BaseRoutes.KategorijaImageUrl + `${imageId}.jpg`;
 };
+
+export const getJeloImageUrlFromApi = (imageId: number) => {
+    return BaseRoutes.JeloImageUrl + `${imageId}.jpg`;
+};

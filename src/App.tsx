@@ -22,6 +22,7 @@ import { KategorijaImageForm } from './containers/Kategorije/KategorijaImageForm
 import { AdminForm } from './containers/Administratori/AdminForm';
 import { JeloFrom } from './containers/Jela/JeloForm';
 import { JelaImageForm } from './containers/Jela/JelaImageForm';
+import { RestoranDetalji } from './containers/Restorani/RestoranDetalji';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -75,6 +76,7 @@ const App: React.FC = () => {
                             <Route path={AppRoutes.RestoranKorisniciNew} exact component={KorisnikForm} />
                             <Route path={AppRoutes.RestoranNew} exact component={RestoranForm} />
                             <Route path={AppRoutes.RestoranNewImage} exact component={RestoranImageForm} />
+                            <Route path={AppRoutes.RestoranDetalji} exact component={RestoranDetalji} />
                             <Route path={AppRoutes.AdminKategorije} exact component={KategorijeContainer} />
                             <Route path={AppRoutes.Narudzbe} exact component={NarudzbineContainer} />
                             <Route path={AppRoutes.Jela} exact component={JeloContainer} />
