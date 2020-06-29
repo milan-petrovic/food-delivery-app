@@ -35,12 +35,12 @@ export interface Jelo {
 
 export interface Narudzba {
     id?: number;
-    ime: string;
-    tel: string;
-    adresa: string;
-    email: string;
-    napomena: string;
-    restoranBean: Restoran;
+    ime?: string;
+    tel?: string;
+    adresa?: string;
+    email?: string;
+    napomena?: string;
+    restoranBean?: Restoran;
 }
 
 export interface Stavka {

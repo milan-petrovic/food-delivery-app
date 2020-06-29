@@ -8,6 +8,8 @@ import { getRestoranById } from '../../service/domain/RestoraniService';
 import { getAllJela } from '../../service/domain/JeloService';
 import { MainSection } from '../../components/MainSection/MainSection';
 import { getJeloImageUrlFromApi, getRestoranImageUrlFromApi } from '../../utils/ApiUtils';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+
 import {
     Box,
     Button,
@@ -22,8 +24,13 @@ import {
     DialogContentText,
     DialogTitle,
     Divider,
+    ExpansionPanel,
+    ExpansionPanelDetails,
+    ExpansionPanelSummary,
     Grid,
     Hidden,
+    List,
+    ListItemText,
     Paper,
     TextField,
     Typography,
@@ -34,6 +41,7 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     sidebarAboutBox: {
@@ -57,6 +65,13 @@ const useStyles = makeStyles((theme) => ({
     cardMedia: {
         width: 240,
     },
+    heading: {
+        fontSize: theme.typography.pxToRem(15),
+        fontWeight: theme.typography.fontWeightRegular,
+    },
+    expansionPanelBackground: {
+        backgroundColor: theme.palette.grey[200],
+    },
 }));
 
 export const RestoranDetalji: React.FC = (props) => {
@@ -67,7 +82,10 @@ export const RestoranDetalji: React.FC = (props) => {
     const [jela, setJela] = useState<Jelo[]>();
     const matchId = useRouteMatch<{ id: string }>(AppRoutes.RestoranDetalji)?.params.id;
     const classes = useStyles();
-    const [dialog, setDialog] = useState<{ open?: boolean; kolicina: number }>();
+    const [dialog, setDialog] = useState<{ open: boolean; jelo: Jelo | null }>();
+    const [stavke, setStavke] = useState<Stavka[]>([]);
+    const [sumaKorpe, setSumaKorpe] = useState<number>(0);
+    let insertedKolicina: number;
 
     useEffect(() => {
         getRestoranById(Number(matchId)).then((response) => {
@@ -81,16 +99,31 @@ export const RestoranDetalji: React.FC = (props) => {
         });
     }, []);
 
-    const handleOpenDialog = () => {
-        setDialog({ open: true, kolicina: 1 });
+    const handleOpenDialog = (jelo: Jelo) => {
+        setDialog({ open: true, jelo: jelo });
     };
 
     const handleCloseDialog = () => {
-        setDialog({ open: false, kolicina: 1 });
+        setDialog({ open: false, jelo: null });
     };
 
-    const incrementKolicina = () => {
-        dialog!.kolicina! = dialog!.kolicina! + 1;
+    const updateKolicina = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        insertedKolicina = Number(event.target.value);
+    };
+
+    const addStavka = (jelo: Jelo, kolicina: number) => {
+        setStavke([
+            ...stavke,
+            {
+                kolicina: kolicina,
+                jeloBean: jelo,
+                narudzbaBean: {
+                    id: 0,
+                },
+            },
+        ]);
+        setSumaKorpe(kolicina * jelo.cijena);
+        handleCloseDialog();
     };
 
     return (
@@ -105,16 +138,14 @@ export const RestoranDetalji: React.FC = (props) => {
                     <DialogTitle id="alert-dialog-title">Odaberite kolicinu</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            <TextField
-                                id="standard-number"
-                                type="number"
-                                value={dialog?.kolicina}
-                                onChange={() => incrementKolicina()}
-                            />
+                            <TextField id="standard-number" type="number" onChange={(event) => updateKolicina(event)} />
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button size="large" color="secondary">
+                        <Button
+                            size="large"
+                            color="secondary"
+                            onClick={() => addStavka(dialog?.jelo!, insertedKolicina)}>
                             Dodaj
                         </Button>
                         <Button size="large" onClick={() => handleCloseDialog()}>
@@ -151,7 +182,7 @@ export const RestoranDetalji: React.FC = (props) => {
                                             size="medium"
                                             variant="contained"
                                             color="primary"
-                                            onClick={() => handleOpenDialog()}
+                                            onClick={() => handleOpenDialog(jelo)}
                                             style={{ marginTop: '16px' }}>
                                             Dodaj u korpu
                                         </Button>
@@ -165,7 +196,51 @@ export const RestoranDetalji: React.FC = (props) => {
                     })}
                 </Grid>
                 <Grid xs={12} md={4}>
-                    <Paper elevation={0} className={classes.sidebarAboutBox}>
+                    {stavke.length !== 0 ? (
+                        <ExpansionPanel className={classes.expansionPanelBackground}>
+                            <ExpansionPanelSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header">
+                                <Box fontWeight="fontWeightBold" fontSize={19} style={{ display: 'flex' }}>
+                                    <AddShoppingCartIcon className={classes.icon} />
+                                    Moja korpa {sumaKorpe} DIN
+                                </Box>
+                            </ExpansionPanelSummary>
+                            <ExpansionPanelDetails>
+                                <Grid container>
+                                    <Grid item xs={12}>
+                                        <List>
+                                            {stavke.map((stavka, idx) => {
+                                                let contacanatedString = stavka.kolicina + ' X ' + stavka.jeloBean.ime;
+                                                return (
+                                                    <>
+                                                        <ListItemText
+                                                            primary={contacanatedString}
+                                                            secondary={stavka.jeloBean.sastav}
+                                                        />
+                                                    </>
+                                                );
+                                            })}
+                                        </List>
+                                    </Grid>
+                                    <Grid item xs={12} style={{ paddingRight: '32px', paddingLeft: '32px' }}>
+                                        <Button
+                                            size="medium"
+                                            variant="contained"
+                                            color="primary"
+                                            fullWidth
+                                            style={{ marginTop: '16px' }}>
+                                            Unesi podatke o dostavi
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </ExpansionPanelDetails>
+                        </ExpansionPanel>
+                    ) : (
+                        <></>
+                    )}
+                    <Paper elevation={0} className={classes.sidebarAboutBox} style={{ marginTop: '16px' }}>
                         <Grid container>
                             <Grid xs={12}>
                                 <Box fontWeight="fontWeightBold" fontSize="h5.fontSize" m={1}>

@@ -104,12 +104,12 @@ export const NarudzbineContainer: React.FC<NotificationProps> = (props) => {
                             {narudzbine?.map((narudzbina, idx) => {
                                 return (
                                     <TableRow key={idx}>
-                                        <TableCell>{narudzbina.ime}</TableCell>
-                                        <TableCell align="left">{narudzbina.tel}</TableCell>
-                                        <TableCell align="left">{narudzbina.adresa}</TableCell>
-                                        <TableCell align="left">{narudzbina.email}</TableCell>
-                                        <TableCell align="left">{narudzbina.napomena}</TableCell>
-                                        <TableCell align="left">{narudzbina.restoranBean.ime}</TableCell>
+                                        <TableCell>{narudzbina.ime!}</TableCell>
+                                        <TableCell align="left">{narudzbina.tel!}</TableCell>
+                                        <TableCell align="left">{narudzbina.adresa!}</TableCell>
+                                        <TableCell align="left">{narudzbina.email!}</TableCell>
+                                        <TableCell align="left">{narudzbina.napomena!}</TableCell>
+                                        <TableCell align="left">{narudzbina.restoranBean!.ime}</TableCell>
                                         <TableCell align="left">
                                             <IconButton aria-label="Edit category" color="secondary" size="small">
                                                 <EditIcon />
