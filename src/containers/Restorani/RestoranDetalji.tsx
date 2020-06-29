@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import { NotificationProps } from '../../utils/AppUtils';
-import { Jelo, Restoran } from '../../utils/constants/types';
+import { Jelo, Restoran, Stavka } from '../../utils/constants/types';
 import { useRouteMatch } from 'react-router';
 import { AppRoutes } from '../../utils/constants/routes';
 import { getRestoranById } from '../../service/domain/RestoraniService';
@@ -10,10 +10,17 @@ import { MainSection } from '../../components/MainSection/MainSection';
 import { getJeloImageUrlFromApi, getRestoranImageUrlFromApi } from '../../utils/ApiUtils';
 import {
     Box,
+    Button,
     ButtonBase,
     Card,
     CardContent,
     CardMedia,
+    Container,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
     Divider,
     Grid,
     Hidden,
@@ -27,7 +34,6 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
-import CardActionArea from '@material-ui/core/CardActionArea';
 
 const useStyles = makeStyles((theme) => ({
     sidebarAboutBox: {
@@ -61,6 +67,7 @@ export const RestoranDetalji: React.FC = (props) => {
     const [jela, setJela] = useState<Jelo[]>();
     const matchId = useRouteMatch<{ id: string }>(AppRoutes.RestoranDetalji)?.params.id;
     const classes = useStyles();
+    const [dialog, setDialog] = useState<{ open?: boolean; kolicina: number }>();
 
     useEffect(() => {
         getRestoranById(Number(matchId)).then((response) => {
@@ -74,9 +81,48 @@ export const RestoranDetalji: React.FC = (props) => {
         });
     }, []);
 
+    const handleOpenDialog = () => {
+        setDialog({ open: true, kolicina: 1 });
+    };
+
+    const handleCloseDialog = () => {
+        setDialog({ open: false, kolicina: 1 });
+    };
+
+    const incrementKolicina = () => {
+        dialog!.kolicina! = dialog!.kolicina! + 1;
+    };
+
     return (
         <div>
             <MainSection image={restoranImage!} name={restoran?.ime!} description={restoran?.opis!} />
+            {dialog && dialog.open && (
+                <Dialog
+                    open={dialog.open}
+                    onClose={handleCloseDialog}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogTitle id="alert-dialog-title">Odaberite kolicinu</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            <TextField
+                                id="standard-number"
+                                type="number"
+                                value={dialog?.kolicina}
+                                onChange={() => incrementKolicina()}
+                            />
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button size="large" color="secondary">
+                            Dodaj
+                        </Button>
+                        <Button size="large" onClick={() => handleCloseDialog()}>
+                            Odustani
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            )}
             <Grid container style={{ padding: '48px' }} spacing={2}>
                 <Grid xs={12} md={8} style={{ padding: '16px' }}>
                     <Box fontWeight="fontWeightBold" fontSize="h5.fontSize" m={1}>
@@ -86,29 +132,35 @@ export const RestoranDetalji: React.FC = (props) => {
                     {jela?.map((jelo, idx) => {
                         let jeloImg = getJeloImageUrlFromApi(jelo.id!);
                         return (
-                            <CardActionArea onClick={() => console.log('click')}>
-                                <Card className={classes.card}>
-                                    <div className={classes.cardDetails}>
-                                        <CardContent>
-                                            <Typography component="h2" variant="h5">
-                                                {jelo.ime}
-                                            </Typography>
-                                            <Typography variant="subtitle1" paragraph>
-                                                {jelo.opis}
-                                            </Typography>
-                                            <Typography variant="subtitle1" color="textSecondary">
-                                                {jelo.sastav}
-                                            </Typography>
-                                            <Typography variant="subtitle1" color="primary">
-                                                RSD {jelo.cijena}
-                                            </Typography>
-                                        </CardContent>
-                                    </div>
-                                    <Hidden xsDown>
-                                        <CardMedia className={classes.cardMedia} image={jeloImg} />
-                                    </Hidden>
-                                </Card>
-                            </CardActionArea>
+                            <Card className={classes.card}>
+                                <div className={classes.cardDetails}>
+                                    <CardContent>
+                                        <Typography component="h2" variant="h5">
+                                            {jelo.ime}
+                                        </Typography>
+                                        <Typography variant="subtitle1" paragraph>
+                                            {jelo.opis}
+                                        </Typography>
+                                        <Typography variant="subtitle1" color="textSecondary">
+                                            {jelo.sastav}
+                                        </Typography>
+                                        <Typography variant="subtitle1" color="primary">
+                                            RSD {jelo.cijena}
+                                        </Typography>
+                                        <Button
+                                            size="medium"
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={() => handleOpenDialog()}
+                                            style={{ marginTop: '16px' }}>
+                                            Dodaj u korpu
+                                        </Button>
+                                    </CardContent>
+                                </div>
+                                <Hidden xsDown>
+                                    <CardMedia className={classes.cardMedia} image={jeloImg} />
+                                </Hidden>
+                            </Card>
                         );
                     })}
                 </Grid>

@@ -45,7 +45,7 @@ export interface Narudzba {
 
 export interface Stavka {
     id?: number;
-    narudzbaBean: Narudzba;
+    narudzbaBean?: Narudzba;
     jeloBean: Jelo;
     kolicina: number;
 }

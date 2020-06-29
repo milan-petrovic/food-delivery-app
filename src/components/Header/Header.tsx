@@ -5,7 +5,7 @@ import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/co
 import clsx from 'clsx';
 import MenuIcon from '@material-ui/icons/Menu';
 import { UserContext } from '../../service/providers/UserContextProvider';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { AppRoutes } from '../../utils/constants/routes';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,11 +26,18 @@ const useStyles = makeStyles((theme) => ({
 export const Header: React.FC<ToggleProps> = (props: { open: boolean; onClick: () => void }) => {
     const classes = useStyles();
     const { authenticated } = useContext(UserContext);
+    const history = useHistory();
 
     return (
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
-                <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                <Typography
+                    component="h1"
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                    className={classes.title}
+                    onClick={() => history.push('/')}>
                     Dostava hrane
                 </Typography>
                 {!authenticated && (
