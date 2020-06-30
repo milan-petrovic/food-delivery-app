@@ -3,8 +3,7 @@ import { NotificationProps } from '../../../utils/AppUtils';
 import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import { Restoran, User } from '../../../utils/constants/types';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles } from '@material-ui/core/styles';
+import PersonIcon from '@material-ui/icons/Person';import { makeStyles } from '@material-ui/core/styles';
 import { Notification } from '../../../components/Notification/Notification';
 import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
 import { yupValidationSchema } from './validation';
@@ -74,7 +73,7 @@ const InnerForm = ({
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <PersonIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     {editing ? 'Edituj korisnicke podatke' : 'Unesite korisnicke podatke'}

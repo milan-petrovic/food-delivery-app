@@ -5,7 +5,7 @@ import { Restoran, User } from '../../utils/constants/types';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import RestaurantIcon from '@material-ui/icons/Restaurant';
 import { Notification } from '../../components/Notification/Notification';
 import { yupValidationSchema } from './validation';
 import { getRestoranById, postRestoran, putRestoran } from '../../service/domain/RestoraniService';
@@ -61,7 +61,7 @@ const InnerForm = ({
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <RestaurantIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     {editing ? 'Azuriraj podatke o restoranu' : 'Unesite podatke o restoranu'}
