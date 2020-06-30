@@ -35,17 +35,18 @@ export interface Jelo {
 
 export interface Narudzba {
     id?: number;
-    ime: string;
-    tel: string;
-    adresa: string;
-    email: string;
-    napomena: string;
-    restoranBean: Restoran;
+    ime?: string;
+    tel?: string;
+    adresa?: string;
+    email?: string;
+    napomena?: string;
+    restoranBean?: Restoran | null;
+    stavke?: Stavka[] | null;
 }
 
 export interface Stavka {
     id?: number;
-    narudzbaBean: Narudzba;
+    narudzbaBean?: Narudzba;
     jeloBean: Jelo;
     kolicina: number;
 }
@@ -68,4 +69,9 @@ export interface DecodedToken {
     username: string;
     type: string;
     restoran?: number;
+}
+
+export interface RestoranStavke {
+    stavke: Stavka[];
+    restoran: Restoran;
 }
