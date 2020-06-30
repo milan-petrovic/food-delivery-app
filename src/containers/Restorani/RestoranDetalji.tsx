@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import { NotificationProps } from '../../utils/AppUtils';
-import { Jelo, Restoran, Stavka } from '../../utils/constants/types';
-import { useRouteMatch } from 'react-router';
+import { Jelo, Restoran, RestoranStavke, Stavka } from '../../utils/constants/types';
+import { useHistory, useRouteMatch } from 'react-router';
 import { AppRoutes } from '../../utils/constants/routes';
 import { getRestoranById } from '../../service/domain/RestoraniService';
 import { getAllJela } from '../../service/domain/JeloService';
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const RestoranDetalji: React.FC = (props) => {
-    const { user } = useContext(UserContext);
+    const history = useHistory();
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
     const [restoran, setRestoran] = useState<Restoran>();
     const [restoranImage, setRestoranImage] = useState<string>();
@@ -109,6 +109,15 @@ export const RestoranDetalji: React.FC = (props) => {
 
     const updateKolicina = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         insertedKolicina = Number(event.target.value);
+    };
+
+    const handleInformacijeDostave = () => {
+        const restoranStavke: RestoranStavke = {
+            restoran: restoran!,
+            stavke: stavke,
+        };
+
+        history.push(AppRoutes.PotvrdaNarudzbe, restoranStavke);
     };
 
     const addStavka = (jelo: Jelo, kolicina: number) => {
@@ -230,6 +239,7 @@ export const RestoranDetalji: React.FC = (props) => {
                                             variant="contained"
                                             color="primary"
                                             fullWidth
+                                            onClick={() => handleInformacijeDostave()}
                                             style={{ marginTop: '16px' }}>
                                             Unesi podatke o dostavi
                                         </Button>

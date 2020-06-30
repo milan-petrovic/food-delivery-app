@@ -21,6 +21,7 @@ export enum AppRoutes {
     RestoranNew = '/admin/restorani/new',
     RestoranNewImage = '/admin/restorani/image/:id?',
     Narudzbe = '/admin/narudzbe',
+    PotvrdaNarudzbe = '/narudzbe/potvrda',
     Jela = '/business/jela',
     JelaNewImage = '/admin/jela/image/:id?',
     JelaNew = '/business/jela/new',

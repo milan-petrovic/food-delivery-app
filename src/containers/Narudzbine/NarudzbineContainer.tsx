@@ -97,7 +97,6 @@ export const NarudzbineContainer: React.FC<NotificationProps> = (props) => {
                                 <TableCell>E-mail</TableCell>
                                 <TableCell>Napomena</TableCell>
                                 <TableCell>Naziv restorana</TableCell>
-                                <TableCell>Akcije</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -110,14 +109,6 @@ export const NarudzbineContainer: React.FC<NotificationProps> = (props) => {
                                         <TableCell align="left">{narudzbina.email!}</TableCell>
                                         <TableCell align="left">{narudzbina.napomena!}</TableCell>
                                         <TableCell align="left">{narudzbina.restoranBean!.ime}</TableCell>
-                                        <TableCell align="left">
-                                            <IconButton aria-label="Edit category" color="secondary" size="small">
-                                                <EditIcon />
-                                            </IconButton>
-                                            <IconButton aria-label="Delete category" size="small">
-                                                <DeleteIcon />
-                                            </IconButton>
-                                        </TableCell>
                                     </TableRow>
                                 );
                             })}

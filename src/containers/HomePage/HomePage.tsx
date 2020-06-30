@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MainSection } from '../../components/MainSection/MainSection';
-import { Divider, Typography } from '@material-ui/core';
+import { Container, Divider, Typography } from '@material-ui/core';
 import { RestoraniList } from '../Restorani/RestoraniList';
 import { KategorijeList } from '../Kategorije/KategorijeList';
+import { useLocation } from 'react-router';
+import { NotificationProps } from '../../utils/AppUtils';
+import { Notification } from '../../components/Notification/Notification';
 
 export const HomePage: React.FC = () => {
     const section = {
@@ -12,9 +15,27 @@ export const HomePage: React.FC = () => {
         secondaryText: 'Ovo je najbolja aplikacija za dostavu hrane',
     };
 
+    const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location && location.state) {
+            const pushedNotification = location.state as NotificationProps;
+            setNotification({ ...pushedNotification, onClose: () => setNotification(undefined) });
+        }
+    }, [location]);
+
     return (
         <div style={{ paddingLeft: '48px', paddingRight: '48px', paddingTop: '16px' }}>
             <MainSection name={section.primaryText} description={section.secondaryText} image={section.image} />
+            {notification && (
+                <Notification
+                    popupDuration={notification?.popupDuration}
+                    message={notification?.message}
+                    onClose={notification?.onClose}
+                    severity={notification?.severity}
+                />
+            )}
             <Typography variant="h6" gutterBottom>
                 Restorani
             </Typography>

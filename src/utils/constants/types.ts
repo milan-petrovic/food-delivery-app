@@ -40,7 +40,8 @@ export interface Narudzba {
     adresa?: string;
     email?: string;
     napomena?: string;
-    restoranBean?: Restoran;
+    restoranBean?: Restoran | null;
+    stavke?: Stavka[] | null;
 }
 
 export interface Stavka {
@@ -68,4 +69,9 @@ export interface DecodedToken {
     username: string;
     type: string;
     restoran?: number;
+}
+
+export interface RestoranStavke {
+    stavke: Stavka[];
+    restoran: Restoran;
 }
