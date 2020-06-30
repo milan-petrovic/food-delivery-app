@@ -4,7 +4,6 @@ import { useHistory, useRouteMatch } from 'react-router';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Notification } from '../../components/Notification/Notification';
 import { yupValidationSchema } from './validation';
 import { UserContext } from '../../service/providers/UserContextProvider';
@@ -12,6 +11,8 @@ import { AppRoutes } from '../../utils/constants/routes';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import { User } from '../../utils/constants/types';
 import { postAdmin, getAdminById, putAdmin } from '../../service/domain/KorisniciService';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -63,7 +64,7 @@ const InnerForm = ({
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <SupervisorAccountIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     {editing ? 'Editovanje admina' : 'Unesite podatke o novom adminu'}

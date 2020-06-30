@@ -1,17 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { NotificationProps } from '../../utils/AppUtils';
-import { useHistory } from 'react-router';
+import { useHistory, useRouteMatch } from 'react-router';
 import { Kategorija } from '../../utils/constants/types';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Notification } from '../../components/Notification/Notification';
 import { yupValidationSchema } from './validation';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import { AppRoutes } from '../../utils/constants/routes';
 import { notifyOnReject } from '../../utils/ApiUtils';
-import { postKategorija } from '../../service/domain/KategorijeService';
+import { postKategorija, getKategorijaById, putKategorija } from '../../service/domain/KategorijeService';
+import KitchenIcon from '@material-ui/icons/Kitchen';
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -42,16 +43,31 @@ const InnerForm = ({
     setNotification,
 }: FormikProps<Kategorija> & { notification?: NotificationProps; setNotification: VoidFunction }) => {
     const classes = useStyles();
+    const matchId = useRouteMatch<{ id: string }>(AppRoutes.KategorijaById)?.params.id;
+    const [editing, setEditing] = useState<boolean>(false);
+    const { user } = useContext(UserContext);
+
+    useEffect(() => {
+        if (matchId && !isNaN(Number(matchId))) {
+            getKategorijaById(Number(matchId), user?.accessToken!)
+                .then((response) => {
+                    const { data } = response;
+                    setValues({ ...data });
+                    setEditing(true);
+                })
+                .catch(notifyOnReject(setNotification));
+        }
+    }, []);
 
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <KitchenIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    {'Unesite podatke o kategoriji'}
+                {editing ? 'Editovanje kategorije' : 'Unesite podatke o novoj kategoriji'}
                 </Typography>
                 {notification && (
                     <Notification
@@ -95,7 +111,7 @@ const InnerForm = ({
                         color="secondary"
                         className={classes.submit}
                         disabled={isSubmitting}>
-                        Kreiraj kategoriju
+                        {editing ? 'Edituj kategoriju' : 'kreiraj kategoriju'}
                     </Button>
                     <LinearProgress color="secondary" hidden={!isSubmitting} />
                 </Form>
@@ -117,19 +133,33 @@ export const KategorijaForm: React.FC<NotificationProps> = (props) => {
     const handleSubmit = (values: Kategorija, formikHelpers: FormikHelpers<Kategorija>) => {
         const { resetForm, setSubmitting } = formikHelpers;
         setSubmitting(true);
-
-        postKategorija(values, user?.accessToken!)
-            .then((_) => {
+        if (values.id != null) {
+            putKategorija(values, user?.accessToken!)
+                .then(() => {
+                    history.push(AppRoutes.AdminKategorije, {
+                        message: `Uspesno editovana kategorija ${values.ime}`,
+                        popupDuration: 5000,
+                    });
+                })
+                .catch(notifyOnReject(setNotification, 'Greska prilikom editovanja kategorije'))
+                .finally(() => {
+                    setSubmitting(false);
+                    resetForm();
+                });
+        } else {
+            postKategorija(values, user?.accessToken!)
+                .then((_) => {
                 history.push(AppRoutes.AdminKategorije, {
                     message: `Uspesno kreirana kategorija ${values.ime}`,
                     popupDuration: 5000,
                 });
             })
-            .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja kategorije'))
-            .finally(() => {
+                .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja kategorije'))
+                .finally(() => {
                 setSubmitting(false);
                 resetForm();
             });
+        }
     };
 
     return (
