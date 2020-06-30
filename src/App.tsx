@@ -93,6 +93,7 @@ const App: React.FC = () => {
                             <Route path={AppRoutes.AdminKategorijeNewImage} exact component={KategorijaImageForm} />
                             <Route path={AppRoutes.AdminNew} exact component={AdminForm} />
                             <Route path={AppRoutes.AdminById} exact component={AdminForm} />
+                            <Route path={AppRoutes.KategorijaById} exact component={KategorijaForm} />
                             <Route path="/" exact component={HomePage} />
                         </Switch>
                     </main>
