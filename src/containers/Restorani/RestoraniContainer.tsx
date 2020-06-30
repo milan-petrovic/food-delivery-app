@@ -195,7 +195,16 @@ export const RestoraniContainer: React.FC<NotificationProps> = (props) => {
                                         <TableCell align="left">{restoran.cijenaDostave}</TableCell>
                                         <TableCell align="left">{restoran.usertbl!.uname}</TableCell>
                                         <TableCell align="left">
-                                            <IconButton aria-label="Edit category" color="secondary" size="small">
+                                            <IconButton
+                                                aria-label="Edit category"
+                                                color="secondary"
+                                                size="small"
+                                                onClick={() =>
+                                                    history.push(
+                                                        `/admin/restorani/korisnik/${restoran.usertbl?.id!}`,
+                                                        restoran,
+                                                    )
+                                                }>
                                                 <EditIcon />
                                             </IconButton>
                                             <IconButton

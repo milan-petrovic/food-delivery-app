@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NotificationProps } from '../../../utils/AppUtils';
-import { useHistory } from 'react-router';
-import { User } from '../../../utils/constants/types';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
+import { Restoran, User } from '../../../utils/constants/types';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import { Notification } from '../../../components/Notification/Notification';
 import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
 import { yupValidationSchema } from './validation';
-import { postUser } from '../../../service/domain/KorisniciService';
+import { getUserById, postUser, putUser } from '../../../service/domain/KorisniciService';
 import { notifyOnReject } from '../../../utils/ApiUtils';
 import { AppRoutes } from '../../../utils/constants/routes';
+import { boolean } from 'yup';
+import { getJeloById } from '../../../service/domain/JeloService';
+import { UserContext } from '../../../service/providers/UserContextProvider';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -41,6 +44,30 @@ const InnerForm = ({
     setNotification,
 }: FormikProps<User> & { notification?: NotificationProps; setNotification: VoidFunction }) => {
     const classes = useStyles();
+    const matchId = useRouteMatch<{ id: string }>(AppRoutes.RestoranKorisnikById)?.params.id;
+    const [editing, setEditing] = useState<boolean>(false);
+    const { user } = useContext(UserContext);
+    const history = useHistory();
+    const [restoran, setRestoran] = useState<Restoran>();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (matchId && !isNaN(Number(matchId))) {
+            getUserById(Number(matchId), user?.accessToken!)
+                .then((response) => {
+                    const { data } = response;
+                    setValues({ ...data });
+                    setEditing(true);
+                })
+                .catch(notifyOnReject(setNotification));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (location && location.state) {
+            setRestoran(location.state as Restoran);
+        }
+    }, [location]);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -50,7 +77,7 @@ const InnerForm = ({
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    {'Unesite korisnicke podatke'}
+                    {editing ? 'Edituj korisnicke podatke' : 'Unesite korisnicke podatke'}
                 </Typography>
                 {notification && (
                     <Notification
@@ -91,8 +118,19 @@ const InnerForm = ({
                         color="secondary"
                         className={classes.submit}
                         disabled={isSubmitting}>
-                        Nastavi dalje
+                        {editing ? 'Azuriraj i nastavi dalje' : 'Nastavi dalje'}
                     </Button>
+                    {editing && (
+                        <Button
+                            fullWidth
+                            onClick={() => history.push(`/admin/restorani/${restoran?.id!}`)}
+                            variant="contained"
+                            color="secondary"
+                            className={classes.submit}
+                            disabled={isSubmitting}>
+                            Preskoci
+                        </Button>
+                    )}
                     <LinearProgress color="secondary" hidden={!isSubmitting} />
                 </Form>
             </div>
@@ -109,20 +147,41 @@ const defaultValues: User = {
 export const KorisnikForm: React.FC<NotificationProps> = (props) => {
     const [notification, setNotification] = useState<NotificationProps | undefined>(undefined);
     const history = useHistory();
+    const location = useLocation();
+    const [restoran, setRestoran] = useState<Restoran>();
+    const { user } = useContext(UserContext);
+
+    useEffect(() => {
+        if (location && location.state) {
+            setRestoran(location.state as Restoran);
+        }
+    }, [location]);
 
     const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
         const { setSubmitting, resetForm } = formikHelpers;
 
         setSubmitting(true);
-        postUser(values)
-            .then((response) => {
-                history.push(AppRoutes.RestoranNew, response.data);
-            })
-            .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja korisnika'))
-            .finally(() => {
-                setSubmitting(false);
-                resetForm();
-            });
+        if (values.id !== null) {
+            putUser(values, user?.accessToken!)
+                .then((response) => {
+                    history.push(`/admin/restorani/${restoran?.id!}`);
+                })
+                .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja korisnika'))
+                .finally(() => {
+                    setSubmitting(false);
+                    resetForm();
+                });
+        } else {
+            postUser(values)
+                .then((response) => {
+                    history.push(AppRoutes.RestoranNew, response.data);
+                })
+                .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja korisnika'))
+                .finally(() => {
+                    setSubmitting(false);
+                    resetForm();
+                });
+        }
     };
 
     return (
