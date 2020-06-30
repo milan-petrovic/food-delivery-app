@@ -93,6 +93,7 @@ const InnerForm = ({
                         fullWidth
                         type="email"
                         name="email"
+                        required
                         label="Email"
                         error={touched.email && !!errors.email}
                         helperText={touched.email && errors.email}
@@ -102,6 +103,7 @@ const InnerForm = ({
                         variant="outlined"
                         margin="normal"
                         fullWidth
+                        required
                         name="tel"
                         label="Telefon"
                         error={touched.tel && !!errors.tel}
@@ -112,6 +114,7 @@ const InnerForm = ({
                         variant="outlined"
                         margin="normal"
                         fullWidth
+                        required
                         name="adresa"
                         label="Adresa"
                         error={touched.adresa && !!errors.adresa}
