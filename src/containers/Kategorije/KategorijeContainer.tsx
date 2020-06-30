@@ -177,7 +177,13 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                                         <TableCell>{kategorija.ime}</TableCell>
                                         <TableCell align="left">{kategorija.opis}</TableCell>
                                         <TableCell align="left">
-                                            <IconButton aria-label="Edit category" color="secondary" size="small">
+                                        <IconButton
+                                                aria-label="Edit category"
+                                                color="secondary"
+                                                size="small"
+                                                onClick={() =>
+                                                    history.push(`/admin/kategorije/${kategorija.id!}`)
+                                                }>
                                                 <EditIcon />
                                             </IconButton>
                                             <IconButton
