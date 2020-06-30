@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MainSection } from '../../components/MainSection/MainSection';
-import { Container, Divider, Typography } from '@material-ui/core';
+import { Box, Container, Divider, Grid, Typography } from '@material-ui/core';
 import { RestoraniList } from '../Restorani/RestoraniList';
 import { KategorijeList } from '../Kategorije/KategorijeList';
 import { useLocation } from 'react-router';
@@ -36,14 +36,14 @@ export const HomePage: React.FC = () => {
                     severity={notification?.severity}
                 />
             )}
-            <Typography variant="h6" gutterBottom>
+            <Box fontWeight="fontWeightBold" fontSize="h5.fontSize" m={1}>
                 Restorani
-            </Typography>
+            </Box>
             <Divider />
             <RestoraniList />
-            <Typography variant="h6" gutterBottom style={{ paddingTop: '32px' }}>
+            <Box fontWeight="fontWeightBold" fontSize="h5.fontSize" m={1} style={{ marginTop: '16px' }}>
                 Kategorije
-            </Typography>
+            </Box>
             <Divider />
             <KategorijeList />
         </div>
