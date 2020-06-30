@@ -70,7 +70,6 @@ export const AdminContainer: React.FC<NotificationProps> = (props) => {
         }
     }, [location]);
 
-
     const getAdmini = () => {
         getAllAdmini(user?.accessToken!)
             .then((response) => {
@@ -177,9 +176,9 @@ export const AdminContainer: React.FC<NotificationProps> = (props) => {
                                         <TableCell>{admin.id}</TableCell>
                                         <TableCell align="center">{admin.uname}</TableCell>
                                         <TableCell align="right">
-                                            <IconButton 
-                                                aria-label="Edit category" 
-                                                color="secondary" 
+                                            <IconButton
+                                                aria-label="Edit category"
+                                                color="secondary"
                                                 size="small"
                                                 onClick={() => history.push(`/admini/${admin.id}`)}>
                                                 <EditIcon />

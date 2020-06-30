@@ -18,7 +18,7 @@ export const deleteAdmin = (admin: User, accessToken: string) => {
     return axiosInstance.delete(`/user/${admin.id}`, getRequestConfig(accessToken));
 };
 
-export const getAdminById = (adminId: number, accesToken: string) =>{
+export const getAdminById = (adminId: number, accesToken: string) => {
     return axiosInstance.get(`/user/${adminId}`, getRequestConfig(accesToken));
 };
 

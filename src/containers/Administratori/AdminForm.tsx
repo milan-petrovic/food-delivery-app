@@ -44,11 +44,11 @@ const InnerForm = ({
     const classes = useStyles();
     const matchId = useRouteMatch<{ id: string }>(AppRoutes.AdminById)?.params.id;
     const [editing, setEditing] = useState<boolean>(false);
-    const {user} = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
         if (matchId && !isNaN(Number(matchId))) {
-            getAdminById(Number(matchId),user?.accessToken! )
+            getAdminById(Number(matchId), user?.accessToken!)
                 .then((response) => {
                     const { data } = response;
                     setValues({ ...data });
@@ -66,7 +66,7 @@ const InnerForm = ({
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                {editing ? 'Editovanje admina' : 'Unesite podatke o novom adminu'}
+                    {editing ? 'Editovanje admina' : 'Unesite podatke o novom adminu'}
                 </Typography>
                 {notification && (
                     <Notification
