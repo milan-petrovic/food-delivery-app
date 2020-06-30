@@ -17,3 +17,11 @@ export const postAdmin = (requestData: User, accessToken: string) => {
 export const deleteAdmin = (admin: User, accessToken: string) => {
     return axiosInstance.delete(`/user/${admin.id}`, getRequestConfig(accessToken));
 };
+
+export const getAdminById = (adminId: number, accesToken: string) =>{
+    return axiosInstance.get(`/user/${adminId}`, getRequestConfig(accesToken));
+};
+
+export const putAdmin = (requestData: User, accessToken: string) => {
+    return axiosInstance.put('/user', requestData, getRequestConfig(accessToken));
+};

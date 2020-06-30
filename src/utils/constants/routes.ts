@@ -29,4 +29,5 @@ export enum AppRoutes {
     BusinessNarudzbe = '/business/narudzbe',
     KategorijaNew = '/admin/kategorije/new',
     AdminNew = '/admini/new',
+    AdminById = '/admini/:id?',
 }
