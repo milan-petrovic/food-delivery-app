@@ -22,3 +22,11 @@ export const postJeloImage = (jeloId: number, formData: FormData, accessToken: s
 export const deleteJeloImage = (jeloId: number, accessToken: string) => {
     return axiosInstance.delete(`/jelo/${jeloId}/img`, getRequestImageConfig(accessToken));
 };
+
+export const getJeloById = (jeloId: number) => {
+    return axiosInstance.get(`/jelo/${jeloId}`);
+};
+
+export const putJelo = (requestData: Jelo, accesToken: string) => {
+    return axiosInstance.put('/jelo', requestData, getRequestConfig(accesToken));
+};

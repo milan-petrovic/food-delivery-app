@@ -25,10 +25,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Notification } from '../../components/Notification/Notification';
 import { getAllKategorije } from '../../service/domain/KategorijeService';
 import { yupValidationSchema } from './validation';
-import { postJelo } from '../../service/domain/JeloService';
+import { getJeloById, postJelo, putJelo } from '../../service/domain/JeloService';
 import { AppRoutes } from '../../utils/constants/routes';
 import { notifyOnReject } from '../../utils/ApiUtils';
-import { useHistory } from 'react-router';
+import { useHistory, useRouteMatch } from 'react-router';
+import { boolean } from 'yup';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -72,6 +73,20 @@ const InnerForm = ({
 }: FormikProps<Jelo> & { notification?: NotificationProps; setNotification: VoidFunction }) => {
     const classes = useStyles();
     const [kategorije, setKategorije] = useState<Kategorija[]>();
+    const matchId = useRouteMatch<{ id: string }>(AppRoutes.JeloById)?.params.id;
+    const [editing, setEditing] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (matchId) {
+            getJeloById(Number(matchId))
+                .then((response) => {
+                    const { data } = response;
+                    setValues({ ...data });
+                    setEditing(true);
+                })
+                .catch(notifyOnReject(setNotification));
+        }
+    }, []);
 
     useEffect(() => {
         getAllKategorije()
@@ -87,7 +102,7 @@ const InnerForm = ({
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    {'Unesite podatke o jelu'}
+                    {editing ? 'Editovanje jela' : 'Unesite podatke o novom jelu'}
                 </Typography>
                 {notification && (
                     <Notification
@@ -183,7 +198,7 @@ const InnerForm = ({
                         color="secondary"
                         className={classes.submit}
                         disabled={isSubmitting}>
-                        Kreiraj jelo
+                        {editing ? 'Edituj jelo' : 'Kreiraj jelo'}
                     </Button>
                     <LinearProgress color="secondary" hidden={!isSubmitting} />
                 </Form>
@@ -219,18 +234,33 @@ export const JeloFrom: React.FC<NotificationProps> = (props) => {
     const handleSubmit = (values: Jelo, formikHelpers: FormikHelpers<Jelo>) => {
         const { resetForm, setSubmitting } = formikHelpers;
         setSubmitting(true);
-        postJelo(values, user?.accessToken!, restoran!)
-            .then((_) => {
-                history.push(AppRoutes.Jela, {
-                    message: `Uspjesno kreirano jelo ${values.ime}`,
-                    popupDuration: 5000,
+        if (values.id != null) {
+            putJelo(values, user?.accessToken!)
+                .then((_) => {
+                    history.push(AppRoutes.Jela, {
+                        message: `Uspjesno editovano jelo ${values.ime}`,
+                        popupDuration: 5000,
+                    });
+                })
+                .catch(notifyOnReject(setNotification, 'Greska prilikom editovanja jela'))
+                .finally(() => {
+                    setSubmitting(false);
+                    resetForm();
                 });
-            })
-            .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja jela'))
-            .finally(() => {
-                setSubmitting(false);
-                resetForm();
-            });
+        } else {
+            postJelo(values, user?.accessToken!, restoran!)
+                .then((_) => {
+                    history.push(AppRoutes.Jela, {
+                        message: `Uspjesno kreirano jelo ${values.ime}`,
+                        popupDuration: 5000,
+                    });
+                })
+                .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja jela'))
+                .finally(() => {
+                    setSubmitting(false);
+                    resetForm();
+                });
+        }
     };
 
     return (

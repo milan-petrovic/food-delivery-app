@@ -183,7 +183,11 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
                                         <TableCell align="left">{jelo.kategorijaBean!.ime}</TableCell>
                                         <TableCell align="left">{jelo.opis}</TableCell>
                                         <TableCell align="left">
-                                            <IconButton aria-label="Edit category" color="secondary" size="small">
+                                            <IconButton
+                                                aria-label="Edit category"
+                                                color="secondary"
+                                                size="small"
+                                                onClick={() => history.push(`/business/jela/${jelo.id}`)}>
                                                 <EditIcon />
                                             </IconButton>
                                             <IconButton

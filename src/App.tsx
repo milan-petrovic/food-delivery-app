@@ -84,6 +84,7 @@ const App: React.FC = () => {
                             <Route path={AppRoutes.PotvrdaNarudzbe} exact component={NarudzbaForm} />
                             <Route path={AppRoutes.Jela} exact component={JeloContainer} />
                             <Route path={AppRoutes.JelaNew} exact component={JeloFrom} />
+                            <Route path={AppRoutes.JeloById} exact component={JeloFrom} />
                             <Route path={AppRoutes.JelaNewImage} exact component={JelaImageForm} />
                             <Route path={AppRoutes.Admini} exact component={AdminContainer} />
                             <Route path={AppRoutes.KategorijaNew} exact component={KategorijaForm} />
