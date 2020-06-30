@@ -25,6 +25,7 @@ export enum AppRoutes {
     Jela = '/business/jela',
     JelaNewImage = '/admin/jela/image/:id?',
     JelaNew = '/business/jela/new',
+    JeloById = '/business/jela/:id?',
     BusinessNarudzbe = '/business/narudzbe',
     KategorijaNew = '/admin/kategorije/new',
     AdminNew = '/admini/new',
