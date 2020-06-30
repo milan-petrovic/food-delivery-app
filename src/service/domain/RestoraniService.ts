@@ -16,6 +16,10 @@ export const postRestoran = (requestData: Restoran, accessToken: string, created
     return axiosInstance.post('/restoran', requestData, getRequestConfig(accessToken));
 };
 
+export const putRestoran = (requestData: Restoran, accessToken: string) => {
+    return axiosInstance.put('/restoran', requestData, getRequestConfig(accessToken));
+};
+
 export const postRestoranImage = (restoranId: number, formData: FormData, accessToken: string) => {
     return axiosInstance.post(`/restoran/${restoranId}/img`, formData, getRequestImageConfig(accessToken));
 };

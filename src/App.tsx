@@ -75,12 +75,14 @@ const App: React.FC = () => {
                             <Route path={AppRoutes.Login} exact component={LoginForm} />
                             <Route path={AppRoutes.Restorani} exact component={RestoraniContainer} />
                             <Route path={AppRoutes.RestoranKorisniciNew} exact component={KorisnikForm} />
+                            <Route path={AppRoutes.RestoranKorisnikById} exact component={KorisnikForm} />
                             <Route path={AppRoutes.RestoranNew} exact component={RestoranForm} />
+                            <Route path={AppRoutes.RestoranById} exact component={RestoranForm} />
                             <Route path={AppRoutes.RestoranNewImage} exact component={RestoranImageForm} />
                             <Route path={AppRoutes.RestoranDetalji} exact component={RestoranDetalji} />
                             <Route path={AppRoutes.AdminKategorije} exact component={KategorijeContainer} />
                             <Route path={AppRoutes.Narudzbe} exact component={NarudzbineContainer} />
-                            <Route path={AppRoutes.BusinessNarudzbe} exact component={NarudzbineContainer} />
+                            <Route path={AppRoutes.RestoranNarudzbe} exact component={NarudzbineContainer} />
                             <Route path={AppRoutes.PotvrdaNarudzbe} exact component={NarudzbaForm} />
                             <Route path={AppRoutes.Jela} exact component={JeloContainer} />
                             <Route path={AppRoutes.JelaNew} exact component={JeloFrom} />
@@ -91,7 +93,7 @@ const App: React.FC = () => {
                             <Route path={AppRoutes.AdminKategorijeNewImage} exact component={KategorijaImageForm} />
                             <Route path={AppRoutes.AdminNew} exact component={AdminForm} />
                             <Route path={AppRoutes.AdminById} exact component={AdminForm} />
-                            <Route path={AppRoutes.KategorijaById} exact component ={KategorijaForm} />
+                            <Route path={AppRoutes.KategorijaById} exact component={KategorijaForm} />
                             <Route path="/" exact component={HomePage} />
                         </Switch>
                     </main>

@@ -187,7 +187,7 @@ export const JeloContainer: React.FC<NotificationProps> = (props) => {
                                                 aria-label="Edit category"
                                                 color="secondary"
                                                 size="small"
-                                                onClick={() => history.push(`/business/jela/${jelo.id}`)}>
+                                                onClick={() => history.push(`/restoran/jela/${jelo.id}`)}>
                                                 <EditIcon />
                                             </IconButton>
                                             <IconButton

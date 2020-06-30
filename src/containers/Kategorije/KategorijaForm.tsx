@@ -13,7 +13,6 @@ import { notifyOnReject } from '../../utils/ApiUtils';
 import { postKategorija, getKategorijaById, putKategorija } from '../../service/domain/KategorijeService';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 
-
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -67,7 +66,7 @@ const InnerForm = ({
                     <KitchenIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                {editing ? 'Editovanje kategorije' : 'Unesite podatke o novoj kategoriji'}
+                    {editing ? 'Editovanje kategorije' : 'Unesite podatke o novoj kategoriji'}
                 </Typography>
                 {notification && (
                     <Notification
@@ -149,16 +148,16 @@ export const KategorijaForm: React.FC<NotificationProps> = (props) => {
         } else {
             postKategorija(values, user?.accessToken!)
                 .then((_) => {
-                history.push(AppRoutes.AdminKategorije, {
-                    message: `Uspesno kreirana kategorija ${values.ime}`,
-                    popupDuration: 5000,
-                });
-            })
+                    history.push(AppRoutes.AdminKategorije, {
+                        message: `Uspesno kreirana kategorija ${values.ime}`,
+                        popupDuration: 5000,
+                    });
+                })
                 .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja kategorije'))
                 .finally(() => {
-                setSubmitting(false);
-                resetForm();
-            });
+                    setSubmitting(false);
+                    resetForm();
+                });
         }
     };
 

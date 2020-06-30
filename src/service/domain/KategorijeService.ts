@@ -18,16 +18,14 @@ export const postKategorijaImage = (kategorijaId: number, formData: FormData, ac
     return axiosInstance.post(`/kategorija/${kategorijaId}/img`, formData, getRequestImageConfig(accessToken));
 };
 
-export const getKategorijaById = (kategorijaId: number, accessToken: string) =>{
+export const getKategorijaById = (kategorijaId: number, accessToken: string) => {
     return axiosInstance.get(`/kategorija/${kategorijaId}`, getRequestConfig(accessToken));
 };
 
-export const putKategorija = (requestData: Kategorija, accessToken: string) =>{
+export const putKategorija = (requestData: Kategorija, accessToken: string) => {
     return axiosInstance.put('/kategorija', requestData, getRequestConfig(accessToken));
 };
-
 
 export const deleteKategorijaImage = (kategorijaId: number, accessToken: string) => {
     return axiosInstance.delete(`/kategorija/${kategorijaId}/img`, getRequestImageConfig(accessToken));
 };
-

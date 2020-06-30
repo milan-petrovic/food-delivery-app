@@ -77,7 +77,7 @@ const InnerForm = ({
     const [editing, setEditing] = useState<boolean>(false);
 
     useEffect(() => {
-        if (matchId) {
+        if (matchId && !isNaN(Number(matchId))) {
             getJeloById(Number(matchId))
                 .then((response) => {
                     const { data } = response;

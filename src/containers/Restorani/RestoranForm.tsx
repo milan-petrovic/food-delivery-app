@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NotificationProps } from '../../utils/AppUtils';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import { Restoran, User } from '../../utils/constants/types';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,10 +8,11 @@ import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typo
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Notification } from '../../components/Notification/Notification';
 import { yupValidationSchema } from './validation';
-import { postRestoran } from '../../service/domain/RestoraniService';
+import { getRestoranById, postRestoran, putRestoran } from '../../service/domain/RestoraniService';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import { AppRoutes } from '../../utils/constants/routes';
 import { notifyOnReject } from '../../utils/ApiUtils';
+import { boolean } from 'yup';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -42,6 +43,18 @@ const InnerForm = ({
     setNotification,
 }: FormikProps<Restoran> & { notification?: NotificationProps; setNotification: VoidFunction }) => {
     const classes = useStyles();
+    const matchId = useRouteMatch<{ id: string }>(AppRoutes.RestoranById)?.params.id;
+    const [editing, setEditing] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (matchId && !isNaN(Number(matchId))) {
+            getRestoranById(Number(matchId)).then((response) => {
+                const { data } = response;
+                setValues({ ...data });
+                setEditing(true);
+            });
+        }
+    }, []);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -51,7 +64,7 @@ const InnerForm = ({
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    {'Unesite podatke o restoranu'}
+                    {editing ? 'Azuriraj podatke o restoranu' : 'Unesite podatke o restoranu'}
                 </Typography>
                 {notification && (
                     <Notification
@@ -147,7 +160,7 @@ const InnerForm = ({
                         color="secondary"
                         className={classes.submit}
                         disabled={isSubmitting}>
-                        Kreiraj restoran
+                        {editing ? 'Azuriraj restoran' : 'Kreiraj restoran'}
                     </Button>
                     <LinearProgress color="secondary" hidden={!isSubmitting} />
                 </Form>
@@ -185,18 +198,33 @@ export const RestoranForm: React.FC<NotificationProps> = (props) => {
         const { resetForm, setSubmitting } = formikHelpers;
         setSubmitting(true);
 
-        postRestoran(values, user?.accessToken!, createdUser!)
-            .then((_) => {
-                history.push(AppRoutes.Restorani, {
-                    message: `Uspjesno kreiran restoran ${values.ime}`,
-                    popupDuration: 5000,
+        if (values.id !== null) {
+            putRestoran(values, user?.accessToken!)
+                .then((_) => {
+                    history.push(AppRoutes.Restorani, {
+                        message: `Uspjesno editovan restoran ${values.ime}`,
+                        popupDuration: 5000,
+                    });
+                })
+                .catch(notifyOnReject(setNotification, 'Greska prilikom editovanja restorana'))
+                .finally(() => {
+                    setSubmitting(false);
+                    resetForm();
                 });
-            })
-            .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja restorana'))
-            .finally(() => {
-                setSubmitting(false);
-                resetForm();
-            });
+        } else {
+            postRestoran(values, user?.accessToken!, createdUser!)
+                .then((_) => {
+                    history.push(AppRoutes.Restorani, {
+                        message: `Uspjesno kreiran restoran ${values.ime}`,
+                        popupDuration: 5000,
+                    });
+                })
+                .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja restorana'))
+                .finally(() => {
+                    setSubmitting(false);
+                    resetForm();
+                });
+        }
     };
 
     return (

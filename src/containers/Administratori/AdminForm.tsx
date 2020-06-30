@@ -10,9 +10,8 @@ import { UserContext } from '../../service/providers/UserContextProvider';
 import { AppRoutes } from '../../utils/constants/routes';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import { User } from '../../utils/constants/types';
-import { postAdmin, getAdminById, putAdmin } from '../../service/domain/KorisniciService';
+import { postAdmin, getUserById, putUser } from '../../service/domain/KorisniciService';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -49,7 +48,7 @@ const InnerForm = ({
 
     useEffect(() => {
         if (matchId && !isNaN(Number(matchId))) {
-            getAdminById(Number(matchId), user?.accessToken!)
+            getUserById(Number(matchId), user?.accessToken!)
                 .then((response) => {
                     const { data } = response;
                     setValues({ ...data });
@@ -134,7 +133,7 @@ export const AdminForm: React.FC<NotificationProps> = (props) => {
         const { resetForm, setSubmitting } = formikHelpers;
         setSubmitting(true);
         if (values.id != null) {
-            putAdmin(values, user?.accessToken!)
+            putUser(values, user?.accessToken!)
                 .then((_) => {
                     history.push(AppRoutes.Admini, {
                         message: `Uspesno editovan admin ${values.uname}`,
