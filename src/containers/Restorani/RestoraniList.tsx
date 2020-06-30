@@ -37,7 +37,7 @@ export const RestoraniList: React.FC = (props) => {
                 let imageUrl = getRestoranImageUrlFromApi(restoran.id!);
 
                 return (
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={4} key={idx}>
                         <Card className={classes.root}>
                             <CardActionArea>
                                 <CardMedia

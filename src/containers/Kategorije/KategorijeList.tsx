@@ -35,7 +35,7 @@ export const KategorijeList: React.FC = (props) => {
                 let imageUrl = getKategorijaImageUrlFromApi(kategorija.id!);
 
                 return (
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={4} key={idx}>
                         <Card className={classes.root}>
                             <CardActionArea onClick={() => console.log('click')}>
                                 <CardMedia className={classes.media} image={imageUrl} title="Slika restorana" />
