@@ -24,7 +24,7 @@ import {
     DialogContentText,
     DialogActions,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import React from 'react';
@@ -56,10 +56,20 @@ export const AdminContainer: React.FC<NotificationProps> = (props) => {
     const [admini, setAdmini] = useState<User[]>();
     const { authenticated, user } = useContext(UserContext);
     const [dialog, setDialog] = useState<{ open: boolean; admin: User | null }>();
+    const history = useHistory();
+    const location = useLocation();
 
     useEffect(() => {
         getAdmini();
     }, []);
+
+    useEffect(() => {
+        if (location && location.state) {
+            const pushedNotification = location.state as NotificationProps;
+            setNotification({ ...pushedNotification, onClose: () => setNotification(undefined) });
+        }
+    }, [location]);
+
 
     const getAdmini = () => {
         getAllAdmini(user?.accessToken!)
@@ -167,7 +177,11 @@ export const AdminContainer: React.FC<NotificationProps> = (props) => {
                                         <TableCell>{admin.id}</TableCell>
                                         <TableCell align="center">{admin.uname}</TableCell>
                                         <TableCell align="right">
-                                            <IconButton aria-label="Edit category" color="secondary" size="small">
+                                            <IconButton 
+                                                aria-label="Edit category" 
+                                                color="secondary" 
+                                                size="small"
+                                                onClick={() => history.push(`/admini/${admin.id}`)}>
                                                 <EditIcon />
                                             </IconButton>
                                             <IconButton

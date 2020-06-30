@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { NotificationProps } from '../../utils/AppUtils';
-import { useHistory } from 'react-router';
+import { useHistory, useRouteMatch } from 'react-router';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
@@ -11,7 +11,7 @@ import { UserContext } from '../../service/providers/UserContextProvider';
 import { AppRoutes } from '../../utils/constants/routes';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import { User } from '../../utils/constants/types';
-import { postAdmin } from '../../service/domain/KorisniciService';
+import { postAdmin, getAdminById, putAdmin } from '../../service/domain/KorisniciService';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -42,6 +42,21 @@ const InnerForm = ({
     setNotification,
 }: FormikProps<User> & { notification?: NotificationProps; setNotification: VoidFunction }) => {
     const classes = useStyles();
+    const matchId = useRouteMatch<{ id: string }>(AppRoutes.AdminById)?.params.id;
+    const [editing, setEditing] = useState<boolean>(false);
+    const {user} = useContext(UserContext);
+
+    useEffect(() => {
+        if (matchId && !isNaN(Number(matchId))) {
+            getAdminById(Number(matchId),user?.accessToken! )
+                .then((response) => {
+                    const { data } = response;
+                    setValues({ ...data });
+                    setEditing(true);
+                })
+                .catch(notifyOnReject(setNotification));
+        }
+    }, []);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -51,7 +66,7 @@ const InnerForm = ({
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    {'Unesite podatke o adminu'}
+                {editing ? 'Editovanje admina' : 'Unesite podatke o novom adminu'}
                 </Typography>
                 {notification && (
                     <Notification
@@ -80,6 +95,7 @@ const InnerForm = ({
                         margin="normal"
                         required
                         fullWidth
+                        type="password"
                         id="passwd"
                         label="Sifra"
                         name="passwd"
@@ -93,7 +109,7 @@ const InnerForm = ({
                         color="secondary"
                         className={classes.submit}
                         disabled={isSubmitting}>
-                        Kreiraj admina
+                        {editing ? 'Edituj admina' : 'Kreiraj admina'}
                     </Button>
                     <LinearProgress color="secondary" hidden={!isSubmitting} />
                 </Form>
@@ -116,19 +132,33 @@ export const AdminForm: React.FC<NotificationProps> = (props) => {
     const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
         const { resetForm, setSubmitting } = formikHelpers;
         setSubmitting(true);
-
-        postAdmin(values, user?.accessToken!)
-            .then((_) => {
-                history.push(AppRoutes.Admini, {
-                    message: `Uspesno kreiran admin ${values.uname}`,
-                    popupDuration: 5000,
+        if (values.id != null) {
+            putAdmin(values, user?.accessToken!)
+                .then((_) => {
+                    history.push(AppRoutes.Admini, {
+                        message: `Uspesno editovan admin ${values.uname}`,
+                        popupDuration: 5000,
+                    });
+                })
+                .catch(notifyOnReject(setNotification, 'Greska prilikom editovanja admina'))
+                .finally(() => {
+                    setSubmitting(false);
+                    resetForm();
                 });
-            })
-            .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja admina'))
-            .finally(() => {
-                setSubmitting(false);
-                resetForm();
-            });
+        } else {
+            postAdmin(values, user?.accessToken!)
+                .then((_) => {
+                    history.push(AppRoutes.Admini, {
+                        message: `Uspesno kreiran admin ${values.uname}`,
+                        popupDuration: 5000,
+                    });
+                })
+                .catch(notifyOnReject(setNotification, 'Greska prilikom kreiranja admina'))
+                .finally(() => {
+                    setSubmitting(false);
+                    resetForm();
+                });
+        }
     };
 
     return (
