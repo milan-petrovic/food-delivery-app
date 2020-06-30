@@ -73,20 +73,6 @@ export const NarudzbineContainer: React.FC<NotificationProps> = (props) => {
                 />
             )}
             <Paper className={classes.paper}>
-                <Grid container>
-                    <Grid item xs={12} sm={9}></Grid>
-                    <Grid item xs={12} sm={3}>
-                        <Button
-                            color="secondary"
-                            variant="outlined"
-                            className={classes.button}
-                            startIcon={<AddIcon />}
-                            component={Link}
-                            to="">
-                            Dodaj
-                        </Button>
-                    </Grid>
-                </Grid>
                 <TableContainer>
                     <Table className={classes.table} aria-label="simple-table">
                         <TableHead>
