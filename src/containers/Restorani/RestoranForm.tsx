@@ -198,7 +198,7 @@ export const RestoranForm: React.FC<NotificationProps> = (props) => {
         const { resetForm, setSubmitting } = formikHelpers;
         setSubmitting(true);
 
-        if (values.id !== null) {
+        if (values.id != null) {
             putRestoran(values, user?.accessToken!)
                 .then((_) => {
                     history.push(AppRoutes.Restorani, {

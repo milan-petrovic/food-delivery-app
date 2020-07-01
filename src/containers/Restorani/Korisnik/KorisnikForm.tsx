@@ -3,7 +3,8 @@ import { NotificationProps } from '../../../utils/AppUtils';
 import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import { Restoran, User } from '../../../utils/constants/types';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
-import PersonIcon from '@material-ui/icons/Person';import { makeStyles } from '@material-ui/core/styles';
+import PersonIcon from '@material-ui/icons/Person';
+import { makeStyles } from '@material-ui/core/styles';
 import { Notification } from '../../../components/Notification/Notification';
 import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
 import { yupValidationSchema } from './validation';
@@ -159,8 +160,10 @@ export const KorisnikForm: React.FC<NotificationProps> = (props) => {
     const handleSubmit = (values: User, formikHelpers: FormikHelpers<User>) => {
         const { setSubmitting, resetForm } = formikHelpers;
 
+        console.log(values);
+
         setSubmitting(true);
-        if (values.id !== null) {
+        if (values.id != null) {
             putUser(values, user?.accessToken!)
                 .then((response) => {
                     history.push(`/admin/restorani/${restoran?.id!}`);
