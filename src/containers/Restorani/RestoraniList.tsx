@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Restoran } from '../../utils/constants/types';
-import { NotificationProps, theme } from '../../utils/AppUtils';
-import { getAllRestorani, pretragaRestorani } from '../../service/domain/RestoraniService';
-import { getRestoranImageUrlFromApi, notifyOnReject } from '../../utils/ApiUtils';
+import React, {useEffect, useState} from 'react';
+import {Restoran} from '../../utils/constants/types';
+import {NotificationProps, theme} from '../../utils/AppUtils';
+import {getAllRestorani, pretragaRestorani} from '../../service/domain/RestoraniService';
+import {getRestoranImageUrlFromApi, notifyOnReject} from '../../utils/ApiUtils';
 import {
     Button,
     Card,
@@ -11,15 +11,12 @@ import {
     CardContent,
     CardMedia,
     Grid,
-    IconButton,
-    Paper,
     TextField,
     Typography,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import MotorcycleIcon from '@material-ui/icons/Motorcycle';
-import { useHistory } from 'react-router';
-import { AxiosResponse } from 'axios';
+import {useHistory} from 'react-router';
 import SearchIcon from '@material-ui/icons/Search';
 import LoopIcon from '@material-ui/icons/Loop';
 

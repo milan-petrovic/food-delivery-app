@@ -1,36 +1,35 @@
-import { NotificationProps } from '../../utils/AppUtils';
+import {NotificationProps} from '../../utils/AppUtils';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import { useState, useEffect, useContext } from 'react';
-import { notifyOnReject } from '../../utils/ApiUtils';
+import React, {useContext, useEffect, useState} from 'react';
+import {notifyOnReject} from '../../utils/ApiUtils';
 import {
-    makeStyles,
+    Button,
     Container,
     CssBaseline,
-    Paper,
-    Grid,
-    Button,
-    TableContainer,
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
-    IconButton,
     Dialog,
-    DialogTitle,
+    DialogActions,
     DialogContent,
     DialogContentText,
-    DialogActions,
+    DialogTitle,
+    Grid,
+    IconButton,
+    makeStyles,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
 } from '@material-ui/core';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { Notification } from '../../components/Notification/Notification';
-import { UserContext } from '../../service/providers/UserContextProvider';
-import React from 'react';
-import { Jelo } from '../../utils/constants/types';
-import { getAllJela, deleteJelo } from '../../service/domain/JeloService';
-import { AppRoutes } from '../../utils/constants/routes';
+import {Link, useHistory, useLocation} from 'react-router-dom';
+import {Notification} from '../../components/Notification/Notification';
+import {UserContext} from '../../service/providers/UserContextProvider';
+import {Jelo} from '../../utils/constants/types';
+import {deleteJelo, getAllJela} from '../../service/domain/JeloService';
+import {AppRoutes} from '../../utils/constants/routes';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles((theme) => ({

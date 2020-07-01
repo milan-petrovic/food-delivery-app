@@ -2,35 +2,34 @@ import { NotificationProps } from '../../utils/AppUtils';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import { useState, useEffect, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { notifyOnReject } from '../../utils/ApiUtils';
 import {
-    makeStyles,
+    Button,
     Container,
     CssBaseline,
-    Paper,
-    Grid,
-    Button,
-    TableContainer,
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
-    IconButton,
     Dialog,
-    DialogTitle,
+    DialogActions,
     DialogContent,
     DialogContentText,
-    DialogActions,
+    DialogTitle,
+    Grid,
+    IconButton,
+    makeStyles,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
 } from '@material-ui/core';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Notification } from '../../components/Notification/Notification';
 import { Kategorija } from '../../utils/constants/types';
-import { getAllKategorije, deleteKategorija } from '../../service/domain/KategorijeService';
+import { deleteKategorija, getAllKategorije } from '../../service/domain/KategorijeService';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import { AppRoutes } from '../../utils/constants/routes';
-import React from 'react';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles((theme) => ({

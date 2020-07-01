@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { drawerWidth, ToggleProps } from '../../utils/AppUtils';
+import React, {useContext} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
+import {drawerWidth, ToggleProps} from '../../utils/AppUtils';
 import {
     Avatar,
     Divider,
     Drawer,
-    IconButton,
     List,
     ListItem,
     ListItemAvatar,
@@ -13,12 +12,10 @@ import {
     ListItemText,
     Toolbar,
 } from '@material-ui/core';
-import clsx from 'clsx';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { MainMenuItems } from './MenuItems/MenuItems';
-import { UserContext } from '../../service/providers/UserContextProvider';
-import { AppRoutes } from '../../utils/constants/routes';
-import { Link } from 'react-router-dom';
+import {MainMenuItems} from './MenuItems/MenuItems';
+import {UserContext} from '../../service/providers/UserContextProvider';
+import {AppRoutes} from '../../utils/constants/routes';
+import {Link} from 'react-router-dom';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory, useRouteMatch } from 'react-router';
-import { AppRoutes } from '../../utils/constants/routes';
-import { Avatar, Button, Container, CssBaseline, Grid, TextField, Typography } from '@material-ui/core';
-import { axiosInstance } from '../../api/axios';
-import { getRequestImageConfig, notifyOnReject } from '../../utils/ApiUtils';
-import { UserContext } from '../../service/providers/UserContextProvider';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {useContext, useState} from 'react';
+import {useHistory, useRouteMatch} from 'react-router';
+import {AppRoutes} from '../../utils/constants/routes';
+import {Avatar, Button, Container, CssBaseline, Grid, TextField, Typography} from '@material-ui/core';
+import {notifyOnReject} from '../../utils/ApiUtils';
+import {UserContext} from '../../service/providers/UserContextProvider';
+import {makeStyles} from '@material-ui/core/styles';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
-import { deleteRestoranImage, postRestoranImage } from '../../service/domain/RestoraniService';
-import { NotificationProps } from '../../utils/AppUtils';
-import { Notification } from '../../components/Notification/Notification';
+import {deleteRestoranImage, postRestoranImage} from '../../service/domain/RestoraniService';
+import {NotificationProps} from '../../utils/AppUtils';
+import {Notification} from '../../components/Notification/Notification';
 
 const useStyles = makeStyles((theme) => ({
     root: {

@@ -1,30 +1,22 @@
-import { NotificationProps } from '../../utils/AppUtils';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import React, { useState, useEffect, useContext } from 'react';
-import { notifyOnReject } from '../../utils/ApiUtils';
+import {NotificationProps} from '../../utils/AppUtils';
+import React, {useContext, useEffect, useState} from 'react';
+import {notifyOnReject} from '../../utils/ApiUtils';
 import {
-    makeStyles,
     Container,
     CssBaseline,
+    makeStyles,
     Paper,
-    Grid,
-    Button,
-    TableContainer,
     Table,
+    TableBody,
+    TableCell,
+    TableContainer,
     TableHead,
     TableRow,
-    TableCell,
-    TableBody,
-    IconButton,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import { Notification } from '../../components/Notification/Notification';
-import { MainSection } from '../../components/MainSection/MainSection';
-import { Narudzba } from '../../utils/constants/types';
-import { UserContext } from '../../service/providers/UserContextProvider';
-import { getAllNarudzbine } from '../../service/domain/NarudzbineService';
+import {Notification} from '../../components/Notification/Notification';
+import {Narudzba} from '../../utils/constants/types';
+import {UserContext} from '../../service/providers/UserContextProvider';
+import {getAllNarudzbine} from '../../service/domain/NarudzbineService';
 
 const useStyles = makeStyles((theme) => ({
     table: {

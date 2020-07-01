@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
-import { Divider, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Link, useHistory } from 'react-router-dom';
-import { UserContext } from '../../../service/providers/UserContextProvider';
-import { Roles } from '../../../utils/AppUtils';
-import { AppRoutes } from '../../../utils/constants/routes';
+import React, {useContext, useEffect} from 'react';
+import {Divider, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import {Link, useHistory} from 'react-router-dom';
+import {UserContext} from '../../../service/providers/UserContextProvider';
+import {Roles} from '../../../utils/AppUtils';
+import {AppRoutes} from '../../../utils/constants/routes';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 import FastfoodIcon from '@material-ui/icons/Fastfood';

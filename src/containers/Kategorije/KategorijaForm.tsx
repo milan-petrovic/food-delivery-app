@@ -1,16 +1,16 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { NotificationProps } from '../../utils/AppUtils';
-import { useHistory, useRouteMatch } from 'react-router';
-import { Kategorija } from '../../utils/constants/types';
-import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
-import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
-import { Notification } from '../../components/Notification/Notification';
-import { yupValidationSchema } from './validation';
-import { UserContext } from '../../service/providers/UserContextProvider';
-import { AppRoutes } from '../../utils/constants/routes';
-import { notifyOnReject } from '../../utils/ApiUtils';
-import { postKategorija, getKategorijaById, putKategorija } from '../../service/domain/KategorijeService';
+import React, {useContext, useEffect, useState} from 'react';
+import {NotificationProps} from '../../utils/AppUtils';
+import {useHistory, useRouteMatch} from 'react-router';
+import {Kategorija} from '../../utils/constants/types';
+import {Field, Form, Formik, FormikHelpers, FormikProps} from 'formik';
+import {makeStyles} from '@material-ui/core/styles';
+import {Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography} from '@material-ui/core';
+import {Notification} from '../../components/Notification/Notification';
+import {yupValidationSchema} from './validation';
+import {UserContext} from '../../service/providers/UserContextProvider';
+import {AppRoutes} from '../../utils/constants/routes';
+import {notifyOnReject} from '../../utils/ApiUtils';
+import {getKategorijaById, postKategorija, putKategorija} from '../../service/domain/KategorijeService';
 import KitchenIcon from '@material-ui/icons/Kitchen';
 
 const useStyles = makeStyles((theme) => ({

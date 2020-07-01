@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { drawerWidth, ToggleProps } from '../../utils/AppUtils';
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
-import clsx from 'clsx';
-import MenuIcon from '@material-ui/icons/Menu';
+import { ToggleProps } from '../../utils/AppUtils';
+import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
 import { UserContext } from '../../service/providers/UserContextProvider';
 import { Link, useHistory } from 'react-router-dom';
 import { AppRoutes } from '../../utils/constants/routes';
@@ -38,7 +36,7 @@ export const Header: React.FC<ToggleProps> = (props: { open: boolean; onClick: (
                     noWrap
                     className={classes.title}
                     onClick={() => history.push('/')}>
-                    Dostava hrane
+                    Food delivery
                 </Typography>
                 {!authenticated && (
                     <Button color="secondary" variant="outlined" component={Link} to={AppRoutes.Login}>

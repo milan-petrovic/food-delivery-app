@@ -1,6 +1,6 @@
-import { axiosInstance } from '../../api/axios';
-import { Kategorija } from '../../utils/constants/types';
-import { getRequestConfig, getRequestImageConfig } from '../../utils/ApiUtils';
+import {axiosInstance} from '../../api/axios';
+import {Kategorija} from '../../utils/constants/types';
+import {getRequestConfig, getRequestImageConfig} from '../../utils/ApiUtils';
 
 export const getAllKategorije = () => {
     return axiosInstance.get('/kategorija');

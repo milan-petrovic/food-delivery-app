@@ -1,36 +1,35 @@
-import { NotificationProps } from '../../utils/AppUtils';
+import {NotificationProps} from '../../utils/AppUtils';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import React, { useState, useEffect, useContext } from 'react';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { Restoran } from '../../utils/constants/types';
-import { deleteRestoran, deleteRestoranImage, getAllRestorani } from '../../service/domain/RestoraniService';
-import { notifyOnReject } from '../../utils/ApiUtils';
+import React, {useContext, useEffect, useState} from 'react';
+import {Restoran} from '../../utils/constants/types';
+import {deleteRestoran, deleteRestoranImage, getAllRestorani} from '../../service/domain/RestoraniService';
+import {notifyOnReject} from '../../utils/ApiUtils';
 import {
-    makeStyles,
+    Button,
     Container,
     CssBaseline,
-    Paper,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
     Grid,
-    Button,
-    TableContainer,
+    IconButton,
+    makeStyles,
+    Paper,
     Table,
+    TableBody,
+    TableCell,
+    TableContainer,
     TableHead,
     TableRow,
-    TableCell,
-    TableBody,
-    IconButton,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    DialogContentText,
 } from '@material-ui/core';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { Notification } from '../../components/Notification/Notification';
-import { UserContext } from '../../service/providers/UserContextProvider';
-import { AppRoutes } from '../../utils/constants/routes';
+import {Link, useHistory, useLocation} from 'react-router-dom';
+import {Notification} from '../../components/Notification/Notification';
+import {UserContext} from '../../service/providers/UserContextProvider';
+import {AppRoutes} from '../../utils/constants/routes';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles((theme) => ({

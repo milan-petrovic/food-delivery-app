@@ -5,8 +5,7 @@ import { Jelo, Kategorija } from '../../utils/constants/types';
 import { getJelaByKategorija } from '../../service/domain/JeloService';
 import { getJeloImageUrlFromApi, getKategorijaImageUrlFromApi, notifyOnReject } from '../../utils/ApiUtils';
 import { NotificationProps } from '../../utils/AppUtils';
-import { MainSection } from '../../components/MainSection/MainSection';
-import { Box, Button, Card, CardContent, CardMedia, Divider, Grid, Hidden, Typography } from '@material-ui/core';
+import { Box, Button, Card, CardContent, CardMedia, Divider, Hidden, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

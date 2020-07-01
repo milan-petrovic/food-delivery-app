@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { NotificationProps } from '../../../utils/AppUtils';
-import { useHistory, useLocation, useRouteMatch } from 'react-router';
-import { Restoran, User } from '../../../utils/constants/types';
-import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
+import React, {useContext, useEffect, useState} from 'react';
+import {NotificationProps} from '../../../utils/AppUtils';
+import {useHistory, useLocation, useRouteMatch} from 'react-router';
+import {Restoran, User} from '../../../utils/constants/types';
+import {Field, Form, Formik, FormikHelpers, FormikProps} from 'formik';
 import PersonIcon from '@material-ui/icons/Person';
-import { makeStyles } from '@material-ui/core/styles';
-import { Notification } from '../../../components/Notification/Notification';
-import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
-import { yupValidationSchema } from './validation';
-import { getUserById, postUser, putUser } from '../../../service/domain/KorisniciService';
-import { notifyOnReject } from '../../../utils/ApiUtils';
-import { AppRoutes } from '../../../utils/constants/routes';
-import { boolean } from 'yup';
-import { getJeloById } from '../../../service/domain/JeloService';
-import { UserContext } from '../../../service/providers/UserContextProvider';
+import {makeStyles} from '@material-ui/core/styles';
+import {Notification} from '../../../components/Notification/Notification';
+import {Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography} from '@material-ui/core';
+import {yupValidationSchema} from './validation';
+import {getUserById, postUser, putUser} from '../../../service/domain/KorisniciService';
+import {notifyOnReject} from '../../../utils/ApiUtils';
+import {AppRoutes} from '../../../utils/constants/routes';
+import {UserContext} from '../../../service/providers/UserContextProvider';
 
 const useStyles = makeStyles((theme) => ({
     paper: {

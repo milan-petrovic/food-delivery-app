@@ -1,18 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { NotificationProps } from '../../utils/AppUtils';
-import { useHistory, useLocation, useRouteMatch } from 'react-router';
-import { Restoran, User } from '../../utils/constants/types';
-import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
-import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
+import React, {useContext, useEffect, useState} from 'react';
+import {NotificationProps} from '../../utils/AppUtils';
+import {useHistory, useLocation, useRouteMatch} from 'react-router';
+import {Restoran, User} from '../../utils/constants/types';
+import {Field, Form, Formik, FormikHelpers, FormikProps} from 'formik';
+import {makeStyles} from '@material-ui/core/styles';
+import {Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography} from '@material-ui/core';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
-import { Notification } from '../../components/Notification/Notification';
-import { yupValidationSchema } from './validation';
-import { getRestoranById, postRestoran, putRestoran } from '../../service/domain/RestoraniService';
-import { UserContext } from '../../service/providers/UserContextProvider';
-import { AppRoutes } from '../../utils/constants/routes';
-import { notifyOnReject } from '../../utils/ApiUtils';
-import { boolean } from 'yup';
+import {Notification} from '../../components/Notification/Notification';
+import {yupValidationSchema} from './validation';
+import {getRestoranById, postRestoran, putRestoran} from '../../service/domain/RestoraniService';
+import {UserContext} from '../../service/providers/UserContextProvider';
+import {AppRoutes} from '../../utils/constants/routes';
+import {notifyOnReject} from '../../utils/ApiUtils';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
