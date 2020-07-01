@@ -4,11 +4,21 @@ import { Narudzba, Restoran, RestoranStavke, Stavka } from '../../utils/constant
 import { useHistory, useLocation } from 'react-router';
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
+import {
+    Avatar,
+    Button,
+    Container,
+    CssBaseline,
+    LinearProgress,
+    ListItemIcon,
+    TextField,
+    Typography,
+} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Notification } from '../../components/Notification/Notification';
 import { yupValidationSchema } from './validation';
 import { postNaruzba } from '../../service/domain/NarudzbineService';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -45,7 +55,7 @@ const InnerForm = ({
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <ListAltIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     {'Unesite podatke o dostavi'}
@@ -63,6 +73,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         required
                         fullWidth
                         id="ime"
@@ -75,6 +86,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         fullWidth
                         multiline
                         rows={5}
@@ -88,6 +100,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         fullWidth
                         type="email"
                         name="email"
@@ -100,6 +113,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         fullWidth
                         required
                         name="tel"
@@ -111,6 +125,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         fullWidth
                         required
                         name="adresa"

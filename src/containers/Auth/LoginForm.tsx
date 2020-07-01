@@ -83,6 +83,7 @@ const InnerForm = ({
                             as={TextField}
                             variant="outlined"
                             margin="normal"
+                            color="secondary"
                             required
                             fullWidth
                             id="username"
@@ -95,6 +96,7 @@ const InnerForm = ({
                             as={TextField}
                             variant="outlined"
                             margin="normal"
+                            color="secondary"
                             required
                             fullWidth
                             name="password"

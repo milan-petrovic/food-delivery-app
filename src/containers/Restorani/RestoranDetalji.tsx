@@ -42,6 +42,7 @@ import PhoneIcon from '@material-ui/icons/Phone';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Field } from 'formik';
 
 const useStyles = makeStyles((theme) => ({
     sidebarAboutBox: {
@@ -147,7 +148,12 @@ export const RestoranDetalji: React.FC = (props) => {
                     <DialogTitle id="alert-dialog-title">Odaberite kolicinu</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            <TextField id="standard-number" type="number" onChange={(event) => updateKolicina(event)} />
+                            <TextField
+                                color="secondary"
+                                id="standard-number"
+                                type="number"
+                                onChange={(event) => updateKolicina(event)}
+                            />
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
@@ -184,13 +190,13 @@ export const RestoranDetalji: React.FC = (props) => {
                                         <Typography variant="subtitle1" color="textSecondary">
                                             {jelo.sastav}
                                         </Typography>
-                                        <Typography variant="subtitle1" color="primary">
+                                        <Typography variant="subtitle1" color="secondary">
                                             RSD {jelo.cijena}
                                         </Typography>
                                         <Button
                                             size="medium"
                                             variant="contained"
-                                            color="primary"
+                                            color="secondary"
                                             onClick={() => handleOpenDialog(jelo)}
                                             style={{ marginTop: '16px' }}>
                                             Dodaj u korpu
@@ -213,7 +219,7 @@ export const RestoranDetalji: React.FC = (props) => {
                                 id="panel1a-header">
                                 <Box fontWeight="fontWeightBold" fontSize={19} style={{ display: 'flex' }}>
                                     <AddShoppingCartIcon className={classes.icon} />
-                                    Moja korpa {sumaKorpe} DIN
+                                    Moja korpa {sumaKorpe} RSD
                                 </Box>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
@@ -237,7 +243,7 @@ export const RestoranDetalji: React.FC = (props) => {
                                         <Button
                                             size="medium"
                                             variant="contained"
-                                            color="primary"
+                                            color="secondary"
                                             fullWidth
                                             onClick={() => handleInformacijeDostave()}
                                             style={{ marginTop: '16px' }}>

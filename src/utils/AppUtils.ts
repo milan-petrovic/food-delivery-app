@@ -1,3 +1,5 @@
+import { createMuiTheme } from '@material-ui/core';
+
 export const drawerWidth = 240;
 
 export enum Roles {
@@ -19,3 +21,16 @@ export interface ToggleProps {
     open: boolean;
     onClick(): void;
 }
+
+export const theme = createMuiTheme({
+    palette: {
+        type: 'light',
+        primary: {
+            main: '#ffffff',
+            dark: '#ffffff',
+        },
+        secondary: {
+            main: '#FFC600',
+        },
+    },
+});
