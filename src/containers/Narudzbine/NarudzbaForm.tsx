@@ -8,9 +8,7 @@ import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typo
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Notification } from '../../components/Notification/Notification';
 import { yupValidationSchema } from './validation';
-import { postRestoran } from '../../service/domain/RestoraniService';
 import { postNaruzba } from '../../service/domain/NarudzbineService';
-import { AppRoutes } from '../../utils/constants/routes';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
