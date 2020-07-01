@@ -56,7 +56,7 @@ export const RestoraniList: React.FC = (props) => {
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="primary" startIcon={<MotorcycleIcon />}>
+                                <Button size="small" color="secondary" startIcon={<MotorcycleIcon />}>
                                     {restoran.cijenaDostave + ' DIN'}
                                 </Button>
                             </CardActions>

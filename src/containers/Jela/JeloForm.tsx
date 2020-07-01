@@ -117,6 +117,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         required
                         fullWidth
                         id="ime"
@@ -129,6 +130,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         required
                         fullWidth
                         multiline
@@ -143,6 +145,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         fullWidth
                         multiline
                         rows={5}
@@ -156,6 +159,7 @@ const InnerForm = ({
                         variant="outlined"
                         margin="normal"
                         type="number"
+                        color="secondary"
                         fullWidth
                         name="cijena"
                         label="Cijena"
@@ -174,6 +178,7 @@ const InnerForm = ({
                             <Field
                                 id="category-select"
                                 as={Select}
+                                color="secondary"
                                 labelId="category-label"
                                 name="kategorijaBean.id"
                                 error={touched.kategorijaBean && !!errors.kategorijaBean}

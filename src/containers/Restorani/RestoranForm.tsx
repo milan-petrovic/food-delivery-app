@@ -81,6 +81,7 @@ const InnerForm = ({
                         margin="normal"
                         required
                         fullWidth
+                        color="secondary"
                         id="ime"
                         label="Ime"
                         name="ime"
@@ -91,6 +92,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         required
                         fullWidth
                         multiline
@@ -105,6 +107,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         fullWidth
                         type="email"
                         name="email"
@@ -116,6 +119,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         fullWidth
                         name="tel"
                         label="Telefon"
@@ -126,6 +130,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         fullWidth
                         name="adresa"
                         label="Adresa"
@@ -135,6 +140,7 @@ const InnerForm = ({
                     <Field
                         as={TextField}
                         variant="outlined"
+                        color="secondary"
                         margin="normal"
                         fullWidth
                         name="radnoVrijeme"
@@ -145,6 +151,7 @@ const InnerForm = ({
                     <Field
                         as={TextField}
                         variant="outlined"
+                        color="secondary"
                         margin="normal"
                         type="number"
                         fullWidth

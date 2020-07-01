@@ -81,6 +81,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         required
                         fullWidth
                         id="ime"
@@ -93,6 +94,7 @@ const InnerForm = ({
                         as={TextField}
                         variant="outlined"
                         margin="normal"
+                        color="secondary"
                         required
                         fullWidth
                         multiline

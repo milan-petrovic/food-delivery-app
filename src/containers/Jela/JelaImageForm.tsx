@@ -10,6 +10,7 @@ import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
 import { Notification } from '../../components/Notification/Notification';
 import { makeStyles } from '@material-ui/core/styles';
 import { deleteJeloImage, postJeloImage } from '../../service/domain/JeloService';
+import { Field } from 'formik';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -107,6 +108,7 @@ export const JelaImageForm: React.FC = (props) => {
                             value={image?.name!} // workaround for issue https://github.com/mui-org/material-ui/issues/4904
                             fullWidth
                             required
+                            color="secondary"
                             disabled
                         />
                     </Grid>
