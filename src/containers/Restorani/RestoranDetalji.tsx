@@ -306,7 +306,7 @@ export const RestoranDetalji: React.FC = (props) => {
                                     Dostava
                                 </Box>
                                 <Box m={1} style={{ display: 'flex' }}>
-                                    <div className={classes.icon} /> {restoran?.cijenaDostave + ' rsd'} 
+                                    <div className={classes.icon} /> {restoran?.cijenaDostave + ' rsd'}
                                 </Box>
                             </Grid>
                         </Grid>
