@@ -31,3 +31,7 @@ export const deleteRestoranImage = (restoranId: number, accessToken: string) => 
 export const getRestoranById = (restoranId: number) => {
     return axiosInstance.get(`/restoran/${restoranId}`);
 };
+
+export const pretragaRestorani = (vrijednostPretrage: string) => {
+    return axiosInstance.get(`/restoranPretraga/${vrijednostPretrage}`);
+};

@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 export interface MainSectionProps {
     image: string;
     name: string;
-    description: string;
+    description?: string;
 }
 
 export const MainSection: React.FC<MainSectionProps> = (props) => {
