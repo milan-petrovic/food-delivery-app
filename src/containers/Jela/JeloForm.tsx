@@ -218,6 +218,7 @@ const defaultValues: Jelo = {
     sastav: '',
     restoranBean: null,
     kategorijaBean: null,
+    active: true,
 };
 
 export const JeloFrom: React.FC<NotificationProps> = (props) => {

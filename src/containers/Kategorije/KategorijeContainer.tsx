@@ -131,7 +131,7 @@ export const KategorijeContainer: React.FC<NotificationProps> = (props) => {
                     <DialogTitle id="alert-dialog-title">Potvrda brisanja kategorije</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                            {`Da li ste sigurni da zelite obrisati kategoriju ${dialog?.kategorija?.ime}?`}
+                            {`Brisanjem kategorije, obrisaćete sva jela koja se nalaze u kategoriji  ${dialog?.kategorija?.ime} Da li ste sigurni da zelite obrisati kategoriju?`}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>

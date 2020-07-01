@@ -31,6 +31,7 @@ export interface Jelo {
     opis: string;
     sastav: string;
     cijena: number;
+    active: boolean;
 }
 
 export interface Narudzba {
