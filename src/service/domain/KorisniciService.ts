@@ -1,6 +1,6 @@
-import {User} from '../../utils/constants/types';
-import {axiosInstance} from '../../api/axios';
-import {getRequestConfig} from '../../utils/ApiUtils';
+import { User } from '../../utils/constants/types';
+import { axiosInstance } from '../../api/axios';
+import { getRequestConfig } from '../../utils/ApiUtils';
 
 export const postUser = (requestData: User) => {
     return axiosInstance.post('/user', requestData);

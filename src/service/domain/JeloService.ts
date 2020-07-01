@@ -1,6 +1,6 @@
-import {axiosInstance} from '../../api/axios';
-import {getRequestConfig, getRequestImageConfig} from '../../utils/ApiUtils';
-import {Jelo, Restoran} from '../../utils/constants/types';
+import { axiosInstance } from '../../api/axios';
+import { getRequestConfig, getRequestImageConfig } from '../../utils/ApiUtils';
+import { Jelo, Restoran } from '../../utils/constants/types';
 
 export const getAllJela = (restoran: number) => {
     return axiosInstance.get(`/${restoran}/jela`);

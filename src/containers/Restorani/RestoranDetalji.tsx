@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {NotificationProps} from '../../utils/AppUtils';
-import {Jelo, Restoran, RestoranStavke, Stavka} from '../../utils/constants/types';
-import {useHistory, useRouteMatch} from 'react-router';
-import {AppRoutes} from '../../utils/constants/routes';
-import {getRestoranById} from '../../service/domain/RestoraniService';
-import {getAllJela} from '../../service/domain/JeloService';
-import {MainSection} from '../../components/MainSection/MainSection';
-import {getJeloImageUrlFromApi, getRestoranImageUrlFromApi} from '../../utils/ApiUtils';
+import React, { useEffect, useState } from 'react';
+import { NotificationProps } from '../../utils/AppUtils';
+import { Jelo, Restoran, RestoranStavke, Stavka } from '../../utils/constants/types';
+import { useHistory, useRouteMatch } from 'react-router';
+import { AppRoutes } from '../../utils/constants/routes';
+import { getRestoranById } from '../../service/domain/RestoraniService';
+import { getAllJela } from '../../service/domain/JeloService';
+import { MainSection } from '../../components/MainSection/MainSection';
+import { getJeloImageUrlFromApi, getRestoranImageUrlFromApi } from '../../utils/ApiUtils';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 import {
@@ -32,7 +32,7 @@ import {
     TextField,
     Typography,
 } from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import PhoneIcon from '@material-ui/icons/Phone';

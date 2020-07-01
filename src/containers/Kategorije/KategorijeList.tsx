@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import {NotificationProps} from '../../utils/AppUtils';
-import {Kategorija} from '../../utils/constants/types';
-import {getAllKategorije} from '../../service/domain/KategorijeService';
-import {getKategorijaImageUrlFromApi, notifyOnReject} from '../../utils/ApiUtils';
-import {Card, CardActionArea, CardMedia, Grid, Typography} from '@material-ui/core';
-import {useHistory} from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { NotificationProps } from '../../utils/AppUtils';
+import { Kategorija } from '../../utils/constants/types';
+import { getAllKategorije } from '../../service/domain/KategorijeService';
+import { getKategorijaImageUrlFromApi, notifyOnReject } from '../../utils/ApiUtils';
+import { Card, CardActionArea, CardMedia, Grid, Typography } from '@material-ui/core';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles({
     root: {

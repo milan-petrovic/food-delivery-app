@@ -1,16 +1,16 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {NotificationProps} from '../../utils/AppUtils';
-import {useHistory, useRouteMatch} from 'react-router';
-import {Field, Form, Formik, FormikHelpers, FormikProps} from 'formik';
-import {makeStyles} from '@material-ui/core/styles';
-import {Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography} from '@material-ui/core';
-import {Notification} from '../../components/Notification/Notification';
-import {yupValidationSchema} from './validation';
-import {UserContext} from '../../service/providers/UserContextProvider';
-import {AppRoutes} from '../../utils/constants/routes';
-import {notifyOnReject} from '../../utils/ApiUtils';
-import {User} from '../../utils/constants/types';
-import {getUserById, postAdmin, putUser} from '../../service/domain/KorisniciService';
+import React, { useContext, useEffect, useState } from 'react';
+import { NotificationProps } from '../../utils/AppUtils';
+import { useHistory, useRouteMatch } from 'react-router';
+import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
+import { makeStyles } from '@material-ui/core/styles';
+import { Avatar, Button, Container, CssBaseline, LinearProgress, TextField, Typography } from '@material-ui/core';
+import { Notification } from '../../components/Notification/Notification';
+import { yupValidationSchema } from './validation';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import { AppRoutes } from '../../utils/constants/routes';
+import { notifyOnReject } from '../../utils/ApiUtils';
+import { User } from '../../utils/constants/types';
+import { getUserById, postAdmin, putUser } from '../../service/domain/KorisniciService';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
 const useStyles = makeStyles((theme) => ({

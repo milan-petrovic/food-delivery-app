@@ -1,18 +1,18 @@
-import React, {useContext, useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import {Avatar, Button, CssBaseline, Grid, Paper, TextField, Typography} from '@material-ui/core';
+import React, { useContext, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { Avatar, Button, CssBaseline, Grid, Paper, TextField, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import {NotificationProps, Roles} from '../../utils/AppUtils';
-import {DecodedToken, LoginModel} from '../../utils/constants/types';
-import {Field, Form, Formik, FormikHelpers, FormikProps} from 'formik';
-import {Notification} from '../../components/Notification/Notification';
-import {useHistory} from 'react-router';
-import {UserContext} from '../../service/providers/UserContextProvider';
-import {yupValidationSchema} from './validation';
-import {login} from '../../service/domain/LoginService';
-import {notifyOnReject} from '../../utils/ApiUtils';
+import { NotificationProps, Roles } from '../../utils/AppUtils';
+import { DecodedToken, LoginModel } from '../../utils/constants/types';
+import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
+import { Notification } from '../../components/Notification/Notification';
+import { useHistory } from 'react-router';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import { yupValidationSchema } from './validation';
+import { login } from '../../service/domain/LoginService';
+import { notifyOnReject } from '../../utils/ApiUtils';
 import jwt from 'jwt-decode';
-import {AppRoutes} from '../../utils/constants/routes';
+import { AppRoutes } from '../../utils/constants/routes';
 
 const useStyles = makeStyles((theme) => ({
     root: {

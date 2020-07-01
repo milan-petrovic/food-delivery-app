@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {NotificationProps} from '../../utils/AppUtils';
-import {Jelo, Kategorija, Restoran} from '../../utils/constants/types';
-import {Field, Form, Formik, FormikHelpers, FormikProps} from 'formik';
-import {getRestoranById} from '../../service/domain/RestoraniService';
-import {UserContext} from '../../service/providers/UserContextProvider';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { useContext, useEffect, useState } from 'react';
+import { NotificationProps } from '../../utils/AppUtils';
+import { Jelo, Kategorija, Restoran } from '../../utils/constants/types';
+import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik';
+import { getRestoranById } from '../../service/domain/RestoraniService';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import { makeStyles } from '@material-ui/core/styles';
 import {
     Avatar,
     Button,
@@ -22,13 +22,13 @@ import {
     Typography,
 } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import {Notification} from '../../components/Notification/Notification';
-import {getAllKategorije} from '../../service/domain/KategorijeService';
-import {yupValidationSchema} from './validation';
-import {getJeloById, postJelo, putJelo} from '../../service/domain/JeloService';
-import {AppRoutes} from '../../utils/constants/routes';
-import {notifyOnReject} from '../../utils/ApiUtils';
-import {useHistory, useRouteMatch} from 'react-router';
+import { Notification } from '../../components/Notification/Notification';
+import { getAllKategorije } from '../../service/domain/KategorijeService';
+import { yupValidationSchema } from './validation';
+import { getJeloById, postJelo, putJelo } from '../../service/domain/JeloService';
+import { AppRoutes } from '../../utils/constants/routes';
+import { notifyOnReject } from '../../utils/ApiUtils';
+import { useHistory, useRouteMatch } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
     paper: {

@@ -1,14 +1,14 @@
-import React, {useContext, useState} from 'react';
-import {NotificationProps} from '../../utils/AppUtils';
-import {useHistory, useRouteMatch} from 'react-router';
-import {AppRoutes} from '../../utils/constants/routes';
-import {UserContext} from '../../service/providers/UserContextProvider';
-import {notifyOnReject} from '../../utils/ApiUtils';
-import {Avatar, Button, Container, CssBaseline, Grid, TextField, Typography} from '@material-ui/core';
+import React, { useContext, useState } from 'react';
+import { NotificationProps } from '../../utils/AppUtils';
+import { useHistory, useRouteMatch } from 'react-router';
+import { AppRoutes } from '../../utils/constants/routes';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import { notifyOnReject } from '../../utils/ApiUtils';
+import { Avatar, Button, Container, CssBaseline, Grid, TextField, Typography } from '@material-ui/core';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
-import {Notification} from '../../components/Notification/Notification';
-import {makeStyles} from '@material-ui/core/styles';
-import {deleteJeloImage, postJeloImage} from '../../service/domain/JeloService';
+import { Notification } from '../../components/Notification/Notification';
+import { makeStyles } from '@material-ui/core/styles';
+import { deleteJeloImage, postJeloImage } from '../../service/domain/JeloService';
 
 const useStyles = makeStyles((theme) => ({
     root: {

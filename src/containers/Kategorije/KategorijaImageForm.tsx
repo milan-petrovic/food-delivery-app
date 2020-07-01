@@ -1,14 +1,14 @@
-import React, {useContext, useState} from 'react';
-import {NotificationProps} from '../../utils/AppUtils';
-import {useHistory, useRouteMatch} from 'react-router';
-import {AppRoutes} from '../../utils/constants/routes';
-import {UserContext} from '../../service/providers/UserContextProvider';
-import {makeStyles} from '@material-ui/core/styles';
-import {Avatar, Button, Container, CssBaseline, Grid, TextField, Typography} from '@material-ui/core';
+import React, { useContext, useState } from 'react';
+import { NotificationProps } from '../../utils/AppUtils';
+import { useHistory, useRouteMatch } from 'react-router';
+import { AppRoutes } from '../../utils/constants/routes';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import { makeStyles } from '@material-ui/core/styles';
+import { Avatar, Button, Container, CssBaseline, Grid, TextField, Typography } from '@material-ui/core';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
-import {Notification} from '../../components/Notification/Notification';
-import {notifyOnReject} from '../../utils/ApiUtils';
-import {deleteKategorijaImage, postKategorijaImage} from '../../service/domain/KategorijeService';
+import { Notification } from '../../components/Notification/Notification';
+import { notifyOnReject } from '../../utils/ApiUtils';
+import { deleteKategorijaImage, postKategorijaImage } from '../../service/domain/KategorijeService';
 
 const useStyles = makeStyles((theme) => ({
     root: {

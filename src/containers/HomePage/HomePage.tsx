@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {MainSection} from '../../components/MainSection/MainSection';
-import {Box, Divider} from '@material-ui/core';
-import {RestoraniList} from '../Restorani/RestoraniList';
-import {KategorijeList} from '../Kategorije/KategorijeList';
-import {useLocation} from 'react-router';
-import {NotificationProps} from '../../utils/AppUtils';
-import {Notification} from '../../components/Notification/Notification';
+import React, { useEffect, useState } from 'react';
+import { MainSection } from '../../components/MainSection/MainSection';
+import { Box, Divider } from '@material-ui/core';
+import { RestoraniList } from '../Restorani/RestoraniList';
+import { KategorijeList } from '../Kategorije/KategorijeList';
+import { useLocation } from 'react-router';
+import { NotificationProps } from '../../utils/AppUtils';
+import { Notification } from '../../components/Notification/Notification';
 
 export const HomePage: React.FC = () => {
     const section = {

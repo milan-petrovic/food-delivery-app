@@ -1,9 +1,9 @@
-import {NotificationProps} from '../../utils/AppUtils';
+import { NotificationProps } from '../../utils/AppUtils';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import React, {useContext, useEffect, useState} from 'react';
-import {notifyOnReject} from '../../utils/ApiUtils';
+import React, { useContext, useEffect, useState } from 'react';
+import { notifyOnReject } from '../../utils/ApiUtils';
 import {
     Button,
     Container,
@@ -24,12 +24,12 @@ import {
     TableHead,
     TableRow,
 } from '@material-ui/core';
-import {Link, useHistory, useLocation} from 'react-router-dom';
-import {Notification} from '../../components/Notification/Notification';
-import {UserContext} from '../../service/providers/UserContextProvider';
-import {deleteAdmin, getAllAdmini} from '../../service/domain/KorisniciService';
-import {User} from '../../utils/constants/types';
-import {AppRoutes} from '../../utils/constants/routes';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Notification } from '../../components/Notification/Notification';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import { deleteAdmin, getAllAdmini } from '../../service/domain/KorisniciService';
+import { User } from '../../utils/constants/types';
+import { AppRoutes } from '../../utils/constants/routes';
 
 const useStyles = makeStyles((theme) => ({
     table: {

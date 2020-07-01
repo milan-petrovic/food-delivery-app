@@ -1,6 +1,6 @@
-import {NotificationProps} from '../../utils/AppUtils';
-import React, {useContext, useEffect, useState} from 'react';
-import {notifyOnReject} from '../../utils/ApiUtils';
+import { NotificationProps } from '../../utils/AppUtils';
+import React, { useContext, useEffect, useState } from 'react';
+import { notifyOnReject } from '../../utils/ApiUtils';
 import {
     Container,
     CssBaseline,
@@ -13,10 +13,10 @@ import {
     TableHead,
     TableRow,
 } from '@material-ui/core';
-import {Notification} from '../../components/Notification/Notification';
-import {Narudzba} from '../../utils/constants/types';
-import {UserContext} from '../../service/providers/UserContextProvider';
-import {getAllNarudzbine} from '../../service/domain/NarudzbineService';
+import { Notification } from '../../components/Notification/Notification';
+import { Narudzba } from '../../utils/constants/types';
+import { UserContext } from '../../service/providers/UserContextProvider';
+import { getAllNarudzbine } from '../../service/domain/NarudzbineService';
 
 const useStyles = makeStyles((theme) => ({
     table: {

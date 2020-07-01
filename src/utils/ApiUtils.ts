@@ -1,6 +1,6 @@
-import {NotificationProps} from './AppUtils';
-import {AxiosError} from 'axios';
-import {BaseRoutes} from './constants/routes';
+import { NotificationProps } from './AppUtils';
+import { AxiosError } from 'axios';
+import { BaseRoutes } from './constants/routes';
 
 export const notifyOnReject = (
     setNotification: (value: NotificationProps | undefined) => void,

@@ -1,5 +1,5 @@
-import React, {createContext, ReactNode, useState} from 'react';
-import {AuthUser} from '../../utils/constants/types';
+import React, { createContext, ReactNode, useState } from 'react';
+import { AuthUser } from '../../utils/constants/types';
 
 export interface UserContextInterface {
     authenticated?: boolean;
