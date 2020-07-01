@@ -31,11 +31,6 @@ export const theme = createMuiTheme({
         },
         secondary: {
             main: '#FFC600',
-            light: '#00000029',
         },
-        // background: {
-        //     default: '#112430',
-        //     paper: '#283943',
-        // },
     },
 });
