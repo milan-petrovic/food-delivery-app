@@ -30,3 +30,7 @@ export const getJeloById = (jeloId: number) => {
 export const putJelo = (requestData: Jelo, accesToken: string) => {
     return axiosInstance.put('/jelo', requestData, getRequestConfig(accesToken));
 };
+
+export const getJelaByKategorija = (kategorijaId: number) => {
+    return axiosInstance.get(`/${kategorijaId}/jeloByKat`);
+};

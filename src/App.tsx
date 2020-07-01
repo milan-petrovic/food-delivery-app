@@ -25,6 +25,7 @@ import { JelaImageForm } from './containers/Jela/JelaImageForm';
 import { RestoranDetalji } from './containers/Restorani/RestoranDetalji';
 import { NarudzbaForm } from './containers/Narudzbine/NarudzbaForm';
 import { theme } from './utils/AppUtils';
+import { KategorijaDetalji } from './containers/Kategorije/KategorijaDetalji';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -96,6 +97,7 @@ const App: React.FC = () => {
                                 <Route path={AppRoutes.AdminNew} exact component={AdminForm} />
                                 <Route path={AppRoutes.AdminById} exact component={AdminForm} />
                                 <Route path={AppRoutes.KategorijaById} exact component={KategorijaForm} />
+                                <Route path={AppRoutes.KategorijaDetalji} exact component={KategorijaDetalji} />
                                 <Route path="/" exact component={HomePage} />
                             </Switch>
                         </main>
