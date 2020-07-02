@@ -128,7 +128,7 @@ export const RestoranDetalji: React.FC = (props) => {
                 },
             },
         ]);
-        setSumaKorpe(kolicina * jelo.cijena);
+        setSumaKorpe(sumaKorpe + kolicina * jelo.cijena);
         handleCloseDialog();
     };
 
