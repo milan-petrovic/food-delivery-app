@@ -90,7 +90,7 @@ export const JelaImageForm: React.FC = (props) => {
                     <QueuePlayNextIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Podesavanje slike kategorije
+                    Podesavanje slike jela
                 </Typography>
                 {notification && (
                     <Notification
