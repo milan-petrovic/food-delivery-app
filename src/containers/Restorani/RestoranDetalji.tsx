@@ -174,7 +174,7 @@ export const RestoranDetalji: React.FC = (props) => {
                     {jela?.map((jelo, idx) => {
                         let jeloImg = getJeloImageUrlFromApi(jelo.id!);
                         return (
-                            <Card className={classes.card}>
+                            <Card className={classes.card} key={idx}>
                                 <div className={classes.cardDetails}>
                                     <CardContent>
                                         <Typography component="h2" variant="h5">
